@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application;
+using System;
 
 namespace CleanTracker
 {
@@ -6,7 +7,8 @@ namespace CleanTracker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IssueTracker tracker = new IssueTracker();
+            
         }
     }
 }

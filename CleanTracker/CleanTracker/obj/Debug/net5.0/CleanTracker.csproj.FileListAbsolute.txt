@@ -5,7 +5,6 @@ C:\Dev\CleanTracker\CleanTracker\CleanTracker\bin\Debug\net5.0\CleanTracker.runt
 C:\Dev\CleanTracker\CleanTracker\CleanTracker\bin\Debug\net5.0\CleanTracker.dll
 C:\Dev\CleanTracker\CleanTracker\CleanTracker\bin\Debug\net5.0\ref\CleanTracker.dll
 C:\Dev\CleanTracker\CleanTracker\CleanTracker\bin\Debug\net5.0\CleanTracker.pdb
-C:\Dev\CleanTracker\CleanTracker\CleanTracker\obj\Debug\net5.0\CleanTracker.csprojAssemblyReference.cache
 C:\Dev\CleanTracker\CleanTracker\CleanTracker\obj\Debug\net5.0\CleanTracker.GeneratedMSBuildEditorConfig.editorconfig
 C:\Dev\CleanTracker\CleanTracker\CleanTracker\obj\Debug\net5.0\CleanTracker.AssemblyInfoInputs.cache
 C:\Dev\CleanTracker\CleanTracker\CleanTracker\obj\Debug\net5.0\CleanTracker.AssemblyInfo.cs

@@ -8,10 +8,10 @@ namespace CleanTracker
 {
     public class Issue
     {
-        private string Id;
-        private string Description;
+        public int Id { get; }
+        public string Description { get; }
 
-        public Issue(string id, string description)
+        public Issue(int id, string description)
         {
             Id = id;
             Description = description;

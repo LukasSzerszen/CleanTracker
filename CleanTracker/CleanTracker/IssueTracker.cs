@@ -6,23 +6,22 @@ namespace CleanTracker
 {
     public class IssueTracker
     {
-        private IList issues { get; set; }
+        private IDictionary<int,Issue> issues { get; set; }
 
         public IssueTracker()
         {
-            issues = new List<Issue>();
+            issues = new Dictionary<int,Issue>();
         }
 
-        public int addIssue(string id, string description)
+        public void addIssue(int id, string description)
         {
             Issue issue = new Issue(id, description);
-            int result = issues.Add(issue);
-            return result;
+            issues.Add(id, issue);
         }
 
-        public void getAllIssues()
+        public IEnumerable<Issue> getIssues()
         {
-            throw new NotImplementedException();
+            return issues.Values;
         }
     }
 }

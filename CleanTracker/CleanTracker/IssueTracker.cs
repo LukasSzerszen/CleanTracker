@@ -34,18 +34,18 @@ namespace CleanTracker
             return issues.Remove(id);
         }
 
-        public bool UpdateIssue(int id, string newDescription)
+        public void UpdateIssue(int id, string newDescription)
         {
             if(issues.TryGetValue(id, out _))
             {
-                Issue issue = new Issue(id, newDescription);
-                issues[id] = issue;
-                return true;
+                issues[id].Description = newDescription;
             }
             else
             {
-                return false;
+                Issue issue = new Issue(id, newDescription);
+                issues.Add(id, issue);
             }
+
         }
     }
 }

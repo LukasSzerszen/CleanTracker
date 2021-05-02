@@ -28,5 +28,10 @@ namespace CleanTracker
         {
             return issues[id];
         }
+
+        public bool deleteIssue(int id)
+        {
+            return issues.Remove(id);
+        }
     }
 }

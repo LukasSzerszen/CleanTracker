@@ -54,5 +54,14 @@ namespace test
             bool result = issueTracker.deleteIssue(1);
             Assert.True(result);
         }
+
+        [Fact]
+
+        public void DeleteIssue_does_not_delete_non_exisiting_issue()
+        {
+            IssueTracker issueTracker = new IssueTracker();
+            bool result = issueTracker.deleteIssue(1);
+            Assert.False(result);
+        }
     }
 }

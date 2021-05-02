@@ -34,9 +34,18 @@ namespace CleanTracker
             return issues.Remove(id);
         }
 
-        public bool UpdateIssue(int v, string newDescription)
+        public bool UpdateIssue(int id, string newDescription)
         {
-            throw new NotImplementedException();
+            if(issues.TryGetValue(id, out _))
+            {
+                Issue issue = new Issue(id, newDescription);
+                issues[id] = issue;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

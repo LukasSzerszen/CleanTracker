@@ -71,7 +71,7 @@ namespace test
             issueTracker.AddIssue(1, "I am an issue");
             string newDescription = "I am an updated issue";
             bool result = issueTracker.UpdateIssue(1, newDescription);
-            Assert.False(result);
+            Assert.True(result);
         }
     }
 }

@@ -23,5 +23,10 @@ namespace CleanTracker
         {
             return issues.Values;
         }
+
+        public Issue getIssue(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

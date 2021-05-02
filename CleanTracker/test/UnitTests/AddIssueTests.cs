@@ -15,7 +15,7 @@ namespace test
             issueTracker.addIssue(1, "I am an issue");
             List<Issue> issues = issueTracker.getIssues().ToList();
             int length = issues.Count();
-            Assert.NotEqual(0, length);
+            Assert.NotEmpty(issues);
         }
 
         [Fact]
@@ -32,6 +32,17 @@ namespace test
                     Assert.Equal(1, issue.Id);
                 });
 
+        }
+
+        [Fact]
+
+        public void GetIssue_returns_issue()
+        {
+            IssueTracker issueTracker = new IssueTracker();
+            issueTracker.addIssue(1, "I am an issue");
+            Issue issue = issueTracker.getIssue(1);
+            Assert.Equal(1, issue.Id);
+            Assert.Equal("I am an issue", issue.Description);
         }
 
     }

@@ -1,5 +1,4 @@
-﻿using Application;
-using System;
+﻿using System;
 
 namespace CleanTracker
 {

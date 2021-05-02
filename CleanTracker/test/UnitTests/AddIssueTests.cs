@@ -1,5 +1,4 @@
-using Application;
-using System;
+using CleanTracker;
 using Xunit;
 
 namespace test
@@ -11,8 +10,8 @@ namespace test
       public void AddIssue_creates_issue()
         {
             IssueTracker issueTracker = new IssueTracker();
-            bool result = issueTracker.addIssue("1", "I am an issue");
-            Assert.True(result);
+            int result = issueTracker.addIssue("1", "I am an issue");
+            Assert.NotEqual(-1, result);
         }
 
 

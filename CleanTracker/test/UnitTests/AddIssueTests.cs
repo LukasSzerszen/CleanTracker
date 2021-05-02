@@ -45,5 +45,14 @@ namespace test
             Assert.Equal("I am an issue", issue.Description);
         }
 
+        [Fact]
+
+        public void DeleteIssue_deletes_issue()
+        {
+            IssueTracker issueTracker = new IssueTracker();
+            issueTracker.addIssue(1, "I am an issue");
+            bool result = issueTracker.deleteIssue(1);
+            Assert.True(result);
+        }
     }
 }

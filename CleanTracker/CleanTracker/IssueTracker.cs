@@ -13,23 +13,23 @@ namespace CleanTracker
             issues = new Dictionary<int,Issue>();
         }
 
-        public void addIssue(int id, string description)
+        public void AddIssue(int id, string description)
         {
             Issue issue = new Issue(id, description);
             issues.Add(id, issue);
         }
 
-        public IEnumerable<Issue> getIssues()
+        public IEnumerable<Issue> GetIssues()
         {
             return issues.Values;
         }
 
-        public Issue getIssue(int id)
+        public Issue GetIssue(int id)
         {
             return issues[id];
         }
 
-        public bool deleteIssue(int id)
+        public bool DeleteIssue(int id)
         {
             return issues.Remove(id);
         }

@@ -63,5 +63,15 @@ namespace test
             bool result = issueTracker.deleteIssue(1);
             Assert.False(result);
         }
+
+        [Fact]
+        public void UpdateIssue_updates_issue()
+        {
+            IssueTracker issueTracker = new IssueTracker();
+            issueTracker.addIssue(1, "I am an issue");
+            string newDescription = "I am an updated issue";
+            bool result = issueTracker.UpdateIssue(1, newDescription);
+            Assert.False(result);
+        }
     }
 }

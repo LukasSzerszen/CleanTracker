@@ -33,5 +33,10 @@ namespace CleanTracker
         {
             return issues.Remove(id);
         }
+
+        public bool UpdateIssue(int v, string newDescription)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

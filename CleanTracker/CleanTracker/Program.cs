@@ -7,7 +7,7 @@ namespace CleanTracker
     {
         static void Main(string[] args)
         {
-            IssueTracker tracker = new IssueTracker();
+            Console.WriteLine("Hello World!");
             
         }
     }

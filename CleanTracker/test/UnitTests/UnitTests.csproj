@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\CleanTracker\CleanTracker.csproj" />
   </ItemGroup>
 
 </Project>

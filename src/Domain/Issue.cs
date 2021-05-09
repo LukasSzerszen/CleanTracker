@@ -5,7 +5,7 @@ namespace Domain
 {
     public class Issue : IIssue
     {
-        public IssueId Id { get; set; }
+        public IssueId Id { get; }
 
         public IssueDescription Description { get; set; }
 
@@ -24,14 +24,12 @@ namespace Domain
             Status = IssueProgressStatus.NotStarted;
         }
 
-        public void UpdatePoints(IssuePoints expectedPoints)
-        {
-            throw new NotImplementedException();
-        }
+        public void UpdatePoints(IssuePoints points) => Points = points;
 
-        public IssuePoints GetPoints()
-        {
-            throw new NotImplementedException();
-        }
+        public void UpdateDescription(IssueDescription description) => Description = description;
+
+        public void Assign(string assignee) => AssignedTo = assignee;
+
+        public void UpdateProgress(IssueProgressStatus status) => Status = status; 
     }
 }

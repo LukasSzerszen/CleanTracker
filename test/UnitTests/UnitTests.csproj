@@ -19,9 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\CleanTracker\CleanTracker.csproj" />
-    <ProjectReference Include="..\..\src\CleanTracker.csproj" />
-  </ItemGroup>
-
 </Project>

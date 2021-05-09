@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain;
+using Domain.ValueObjects;
+using System;
 using Xunit;
 
 namespace UnitTests.Domain

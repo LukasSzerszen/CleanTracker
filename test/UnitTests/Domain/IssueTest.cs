@@ -12,14 +12,16 @@ namespace UnitTests.Domain
         public void UpdatePoints_Should_Change_The_Issue_Points()
         {
             //Arrange
-            IssueId id = new IssueId(new Guid());
+            TrackerId id = new TrackerId(new Guid());
             IssueDescription description = new IssueDescription("This is an issue");
             IssuePoints points = new IssuePoints(2);
-            string assignedTo = "asignee";
+            FirstName firstName = new FirstName("John");
+            LastName lastName = new LastName("Doe");
+            IUser assignee = new User(id, firstName, lastName);
             IssuePoints expectedPoints = new IssuePoints(4);
 
             //Act
-            Issue sut = new Issue(id, description, points, assignedTo);
+            Issue sut = new Issue(id, description, points, assignee);
             sut.UpdatePoints(expectedPoints);
             IssuePoints currentPoints = sut.Points;
 
@@ -31,14 +33,16 @@ namespace UnitTests.Domain
         public void ChangeDescription_Should_Update_Description()
         {
             //Arrange
-            IssueId id = new IssueId(new Guid());
+            TrackerId id = new TrackerId(new Guid());
             IssueDescription description = new IssueDescription("This is an issue");
             IssuePoints points = new IssuePoints(2);
-            string assignedTo = "asignee";
             IssueDescription expectedDescription = new IssueDescription("This is an updated description");
+            FirstName firstName = new FirstName("John");
+            LastName lastName = new LastName("Doe");
+            IUser assignee = new User(id, firstName, lastName);
 
             //Act
-            Issue sut = new Issue(id, description, points, assignedTo);
+            Issue sut = new Issue(id, description, points, assignee);
             sut.UpdateDescription(expectedDescription);
             IssueDescription updatedDescription = sut.Description;
 
@@ -50,33 +54,38 @@ namespace UnitTests.Domain
         public void Assign_Should_Update_Description()
         {
             //Arrange
-            IssueId id = new IssueId(new Guid());
+            TrackerId id = new TrackerId(new Guid("9245fe4a-d402-451c-b9ed-9c1a04247482"));
             IssueDescription description = new IssueDescription("This is an issue");
             IssuePoints points = new IssuePoints(2);
-            string assignedTo = "assignee";
-            string expectedAssigne = "I am another person";
+            FirstName firstName = new FirstName("John");
+            LastName lastName = new LastName("Doe");
+            IUser assignee = new User(id, firstName, lastName);
+            firstName = new FirstName("Bob");
+            IUser expectedAssigne = new User(id, firstName, lastName);
 
             //Act
-            Issue sut = new Issue(id, description, points, assignedTo);
+            Issue sut = new Issue(id, description, points, assignee);
             sut.Assign(expectedAssigne);
-            string updatedAssignee = sut.AssignedTo;
+            IUser updatedAssignee = sut.AssignedTo;
 
             //Assert
-            Assert.Equal(expectedAssigne, updatedAssignee);
+            Assert.Equal(expectedAssigne.GetFullName(), updatedAssignee.GetFullName());
         }
 
         [Fact]
         public void UpdateProgress_Should_Update_IssueProgressStatus()
         {
             //Arrange
-            IssueId id = new IssueId(new Guid());
+            TrackerId id = new TrackerId(new Guid("9245fe4a-d402-451c-b9ed-9c1a04247482"));
             IssueDescription description = new IssueDescription("This is an issue");
             IssuePoints points = new IssuePoints(2);
-            string assignedTo = "assignee";
+            FirstName firstName = new FirstName("John");
+            LastName lastName = new LastName("Doe");
+            IUser assignee = new User(id, firstName, lastName);
             IssueProgressStatus expectedStatus = IssueProgressStatus.InProgress;
 
             //Act
-            Issue sut = new Issue(id, description, points, assignedTo);
+            Issue sut = new Issue(id, description, points, assignee);
             sut.UpdateProgress(expectedStatus);
             IssueProgressStatus updatedStatus = sut.Status;
 

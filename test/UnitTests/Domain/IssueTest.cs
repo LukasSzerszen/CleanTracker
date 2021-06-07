@@ -17,7 +17,7 @@ namespace UnitTests.Domain
             IssuePoints points = new IssuePoints(2);
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(firstName, lastName);
             IssuePoints expectedPoints = new IssuePoints(4);
 
             //Act
@@ -39,7 +39,7 @@ namespace UnitTests.Domain
             IssueDescription expectedDescription = new IssueDescription("This is an updated description");
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(firstName, lastName);
 
             //Act
             Issue sut = new Issue(id, description, points, assignee);
@@ -59,9 +59,9 @@ namespace UnitTests.Domain
             IssuePoints points = new IssuePoints(2);
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(firstName, lastName);
             firstName = new FirstName("Bob");
-            IUser expectedAssigne = new User(id, firstName, lastName);
+            IUser expectedAssigne = new User(firstName, lastName);
 
             //Act
             Issue sut = new Issue(id, description, points, assignee);
@@ -81,7 +81,7 @@ namespace UnitTests.Domain
             IssuePoints points = new IssuePoints(2);
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(firstName, lastName);
             IssueProgressStatus expectedStatus = IssueProgressStatus.InProgress;
 
             //Act

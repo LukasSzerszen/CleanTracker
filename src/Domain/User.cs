@@ -1,4 +1,5 @@
 ﻿using Domain.ValueObjects;
+using System;
 using System.Linq;
 
 
@@ -10,9 +11,9 @@ namespace Domain
         public FirstName UserName { get; set; }
         public LastName UserLastName { get; set; }
 
-        public User(TrackerId id, FirstName firstName, LastName lastName)
+        public User(FirstName firstName, LastName lastName)
         {
-            Id = id;
+            Id = new TrackerId(Guid.NewGuid());
             UserName = firstName;
             UserLastName = lastName;
         }

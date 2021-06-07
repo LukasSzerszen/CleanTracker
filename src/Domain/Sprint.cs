@@ -1,6 +1,5 @@
 ﻿using Domain.Interfaces;
 using Domain.ValueObjects;
-using System.Linq;
 
 namespace Domain
 {

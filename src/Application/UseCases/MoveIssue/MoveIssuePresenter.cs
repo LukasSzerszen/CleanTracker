@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,19 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.MoveIssue
 {
-    public class MoveIssueUseCase : IMoveIssueUseCase
+    public class MoveIssuePresenter : IOutPutPort
     {
-
-        public Task Execute(Guid IssueId)
+        public void Invalid()
         {
             throw new NotImplementedException();
         }
 
-        public void SetOutPutPort(IOutPutPort outputPort)
+        public void NotFound()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Ok(IIssue issue)
         {
             throw new NotImplementedException();
         }

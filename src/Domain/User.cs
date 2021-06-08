@@ -11,9 +11,9 @@ namespace Domain
         public FirstName UserName { get; set; }
         public LastName UserLastName { get; set; }
 
-        public User(FirstName firstName, LastName lastName)
+        public User(TrackerId id, FirstName firstName, LastName lastName)
         {
-            Id = new TrackerId(Guid.NewGuid());
+            Id = id;
             UserName = firstName;
             UserLastName = lastName;
         }

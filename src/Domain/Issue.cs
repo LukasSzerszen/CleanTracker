@@ -1,8 +1,9 @@
-﻿using Domain.ValueObjects;
+﻿using Domain.Interfaces;
+using Domain.ValueObjects;
 
 namespace Domain
 {
-    public class Issue : IIssue
+    public class Issue : IIssue, IAssignable
     {
         public TrackerId Id { get; }
 
@@ -13,6 +14,12 @@ namespace Domain
         public IUser AssignedTo { get; set; }
 
         public IssueProgressStatus Status { get; set; }
+
+        public Issue(TrackerId id, IssueDescription description)
+        {
+            Id = id;
+            Description = description;
+        }
 
         public Issue(TrackerId id, IssueDescription description, IssuePoints points, IUser assignedTo)
         {

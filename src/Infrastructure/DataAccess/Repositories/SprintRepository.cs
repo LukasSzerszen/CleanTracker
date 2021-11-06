@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Domain;
 using Domain.Interfaces;
 using Domain.ValueObjects;
-using Infrastructure.Repositories;
 
 namespace Infrastructure
 {
@@ -14,6 +10,11 @@ namespace Infrastructure
     {
 
         public Task Add(ISprint sprint)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Add(Sprint sprint)
         {
             throw new NotImplementedException();
         }
@@ -28,7 +29,7 @@ namespace Infrastructure
             throw new NotImplementedException();
         }
 
-        public Task Update(ISprint sprint)
+        public Task Update(TrackerId id, Sprint sprint)
         {
             throw new NotImplementedException();
         }

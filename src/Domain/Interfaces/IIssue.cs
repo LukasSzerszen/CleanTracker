@@ -5,8 +5,9 @@ namespace Domain.Interfaces
     public interface IIssue
     {
         public TrackerId Id { get; }
-        public IssueDescription Description { get; set; }
-        public IssueProgressStatus Status { get; set; }
+        public IssueTitle Title { get; }
+        public IssueDescription Description { get; }
+        public IssueProgressStatus Status { get; }
         public void UpdateDescription(IssueDescription description);
         public void UpdateProgress(IssueProgressStatus status);
     }

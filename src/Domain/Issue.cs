@@ -15,6 +15,8 @@ namespace Domain
 
         public IssueProgressStatus Status { get; set; }
 
+        public IssueTitle Title { get; set; }
+
         public Issue(TrackerId id, IssueDescription description)
         {
             Id = id;

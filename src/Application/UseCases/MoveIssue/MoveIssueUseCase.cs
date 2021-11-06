@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.UseCases.MoveIssue
@@ -14,9 +11,5 @@ namespace Application.UseCases.MoveIssue
             throw new NotImplementedException();
         }
 
-        public void SetOutPutPort(IOutPutPort outputPort)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

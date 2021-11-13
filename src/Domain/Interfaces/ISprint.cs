@@ -6,9 +6,9 @@ namespace Domain.Interfaces
     {
         public TrackerId Id { get; }
 
-        public TrackerDate StartDate { get; set; }
+        public TrackerDate StartDate { get; }
 
-        public TrackerDate EndDate { get; set; }
+        public TrackerDate EndDate { get; }
 
         public IssueCollection Issues { get; }
 

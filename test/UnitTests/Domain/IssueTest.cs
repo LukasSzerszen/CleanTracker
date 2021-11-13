@@ -12,12 +12,12 @@ namespace UnitTests.Domain
         public void UpdatePoints_Should_Change_The_Issue_Points()
         {
             //Arrange
-            TrackerId id = new TrackerId(new Guid());
+            TrackerId id = new TrackerId(Guid.NewGuid());
             IssueDescription description = new IssueDescription("This is an issue");
             IssuePoints points = new IssuePoints(2);
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(new TrackerId(Guid.NewGuid()), firstName, lastName);
             IssuePoints expectedPoints = new IssuePoints(4);
 
             //Act
@@ -39,7 +39,7 @@ namespace UnitTests.Domain
             IssueDescription expectedDescription = new IssueDescription("This is an updated description");
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(new TrackerId(Guid.NewGuid()), firstName, lastName);
 
             //Act
             Issue sut = new Issue(id, description, points, assignee);
@@ -59,9 +59,9 @@ namespace UnitTests.Domain
             IssuePoints points = new IssuePoints(2);
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(new TrackerId(Guid.NewGuid()), firstName, lastName);
             firstName = new FirstName("Bob");
-            IUser expectedAssigne = new User(id, firstName, lastName);
+            IUser expectedAssigne = new User(new TrackerId(Guid.NewGuid()), firstName, lastName);
 
             //Act
             Issue sut = new Issue(id, description, points, assignee);
@@ -81,7 +81,7 @@ namespace UnitTests.Domain
             IssuePoints points = new IssuePoints(2);
             FirstName firstName = new FirstName("John");
             LastName lastName = new LastName("Doe");
-            IUser assignee = new User(id, firstName, lastName);
+            IUser assignee = new User(new TrackerId(Guid.NewGuid()), firstName, lastName);
             IssueProgressStatus expectedStatus = IssueProgressStatus.InProgress;
 
             //Act

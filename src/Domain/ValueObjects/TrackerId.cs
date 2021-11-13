@@ -16,7 +16,7 @@ namespace Domain.ValueObjects
 
         public override string ToString() => this.Id.ToString();
 
-        public override bool Equals(object obj) => obj is TrackerId && Equals((TrackerId)obj);
+        public override bool Equals(object obj) => obj is TrackerId id && Equals(id);
 
         public override int GetHashCode() => HashCode.Combine(this.Id);
     }

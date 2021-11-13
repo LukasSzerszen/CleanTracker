@@ -1,10 +1,14 @@
-﻿using Domain.ValueObjects;
+﻿using System;
+using Domain.Interfaces;
+using Domain.ValueObjects;
 
 namespace Domain
 {
-    public class Issue : IIssue
+    public class Issue : IIssue, IAssignable
     {
         public TrackerId Id { get; }
+
+        public IssueTitle Title { get; }
 
         public IssueDescription Description { get; set; }
 
@@ -13,6 +17,17 @@ namespace Domain
         public IUser AssignedTo { get; set; }
 
         public IssueProgressStatus Status { get; set; }
+
+        public Issue(IssueTitle title)
+        {
+            Id = new TrackerId(Guid.NewGuid());
+            Title = title;
+        }
+        public Issue(TrackerId id, IssueDescription description)
+        {
+            Id = id;
+            Description = description;
+        }
 
         public Issue(TrackerId id, IssueDescription description, IssuePoints points, IUser assignedTo)
         {

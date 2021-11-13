@@ -2,6 +2,7 @@
 using Application.UseCases.AddIssueUseCase;
 using Domain;
 using Domain.ValueObjects;
+using Infrastructure.DataAccess.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace UnitTests.AddIssue
         public void AddIssueUseCase_Adds_Issue_To_Collection()
         {
             AddIssuePresenter presenter = new();
-            AddIssueUseCase sut = new (_fixture.IssueRepositoryFake);
+            IssueFactory issuefactory = new();
+            AddIssueUseCase sut = new (_fixture.IssueRepositoryFake, issuefactory);
             sut.SetOutputPort(presenter);
             string issueTitle = "new issue";
 

@@ -1,4 +1,5 @@
 ﻿using Application.UseCases.AddIssue;
+using Domain;
 using Domain.Interfaces;
 using Domain.ValueObjects;
 using System;
@@ -10,15 +11,21 @@ namespace Application.UseCases.AddIssueUseCase
     {
         private readonly IIssueRepository _issueRepository;
         private IOutputPort _outputPort;
+        private readonly IIssueFactory _issueFactory;
 
-        public AddIssueUseCase(IIssueRepository issueRepository)
+        public AddIssueUseCase(IIssueRepository issueRepository, IIssueFactory issueFactory)
         {
             _issueRepository = issueRepository;
+            _issueFactory = issueFactory;
             _outputPort = new AddIssuePresenter();
         }
-        public Task Execute(string Issuetitle)
+        public Task Execute(string issuetitle ) => AddIssue(new IssueTitle(issuetitle));
+           
+        private async Task AddIssue(IssueTitle issueTitle)
         {
-            throw new NotImplementedException();
+            Issue issue = _issueFactory.NewIssue(issueTitle);
+            await _issueRepository.Add(issue).ConfigureAwait(false);
+            _outputPort?.Ok(issue);
         }
 
         public void SetOutputPort(IOutputPort output)

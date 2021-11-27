@@ -1,10 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
@@ -22,12 +18,12 @@ namespace Domain
 
         public void UpdateDescription(IssueDescription description)
         {
-           //Null Pattern
+            //Null Pattern
         }
 
         public void UpdateProgress(IssueProgressStatus status)
         {
-           //Null Pattern
+            //Null Pattern
         }
     }
 }

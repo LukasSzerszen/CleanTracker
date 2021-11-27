@@ -1,15 +1,13 @@
 ﻿using Domain;
-using Domain.ValueObjects;
 
-namespace Application.UseCases.AddIssue
+namespace Application.UseCases.AddIssue;
+
+public interface IOutputPort
 {
-    public interface IOutputPort
-    {
-        void Invalid();
+    void Invalid();
 
-        void Ok(Issue issue);
+    void Ok(Issue issue);
 
-        void NotFound();
+    void NotFound();
 
-    }
 }

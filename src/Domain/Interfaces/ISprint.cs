@@ -1,17 +1,16 @@
 ﻿using Domain.ValueObjects;
 
-namespace Domain.Interfaces
+namespace Domain.Interfaces;
+
+public interface ISprint
 {
-    public interface ISprint
-    {
-        public TrackerId Id { get; }
+    public TrackerId Id { get; }
 
-        public TrackerDate StartDate { get; }
+    public TrackerDate StartDate { get; }
 
-        public TrackerDate EndDate { get; }
+    public TrackerDate EndDate { get; }
 
-        public IssueCollection Issues { get; }
+    public IssueCollection Issues { get; }
 
-        public int TotalPoints();
-    }
+    public int TotalPoints();
 }

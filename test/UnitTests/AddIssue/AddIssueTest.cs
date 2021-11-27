@@ -1,35 +1,27 @@
 ﻿using Application.UseCases.AddIssue;
 using Application.UseCases.AddIssueUseCase;
-using Domain;
-using Domain.ValueObjects;
 using Infrastructure.DataAccess.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace UnitTests.AddIssue
+namespace UnitTests.AddIssue;
+
+public sealed class AddIssueTest : IClassFixture<StandardFixture>
 {
-    public sealed class AddIssueTest : IClassFixture<StandardFixture>
+    private readonly StandardFixture _fixture;
+
+    public AddIssueTest(StandardFixture fixture) => _fixture = fixture;
+
+    [Fact]
+    public void AddIssueUseCase_Adds_Issue_To_Collection()
     {
-        private readonly StandardFixture _fixture;
+        AddIssuePresenter presenter = new();
+        IssueFactory issuefactory = new();
+        AddIssueUseCase sut = new(_fixture.IssueRepositoryFake, issuefactory);
+        sut.SetOutputPort(presenter);
+        string issueTitle = "new issue";
 
-        public AddIssueTest(StandardFixture fixture) => _fixture = fixture;
+        sut.Execute(issueTitle);
 
-        [Fact]
-        public void AddIssueUseCase_Adds_Issue_To_Collection()
-        {
-            AddIssuePresenter presenter = new();
-            IssueFactory issuefactory = new();
-            AddIssueUseCase sut = new (_fixture.IssueRepositoryFake, issuefactory);
-            sut.SetOutputPort(presenter);
-            string issueTitle = "new issue";
-
-            sut.Execute(issueTitle);
-
-            Assert.NotNull(presenter.Issue);
-        }
+        Assert.NotNull(presenter.Issue);
     }
 }

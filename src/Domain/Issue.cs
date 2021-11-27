@@ -44,6 +44,6 @@ namespace Domain
 
         public void Assign(IUser assignee) => AssignedTo = assignee;
 
-        public void UpdateProgress(IssueProgressStatus status) => Status = status; 
+        public void UpdateProgress(IssueProgressStatus status) => Status = status;
     }
 }

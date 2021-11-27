@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.MoveIssue
 {
-    interface IMoveIssueUseCase 
+    interface IMoveIssueUseCase
     {
         Task Execute(Guid IssueId);
     }

@@ -17,15 +17,15 @@ namespace Infrastructure.Repositories
         public async Task Add(Sprint sprint)
         {
             _context.Sprints.Add(sprint);
-            
+
             await Task.CompletedTask.ConfigureAwait(false);
         }
 
         public async Task Delete(TrackerId sprintId)
         {
-           Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
+            Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
 
-            if(sprint == null)
+            if (sprint == null)
             {
                 return;
             }
@@ -39,20 +39,20 @@ namespace Infrastructure.Repositories
         {
             Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
 
-            if(sprint == null)
+            if (sprint == null)
             {
                 return SprintNull.Instance;
             }
 
             return await Task.FromResult(sprint).ConfigureAwait(false);
-           
+
         }
 
         public async Task Update(TrackerId sprintId, Sprint sprint)
         {
             Sprint? oldSprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
 
-            if(oldSprint != null)
+            if (oldSprint != null)
             {
                 _context.Sprints.Remove(oldSprint);
                 _context.Sprints.Add(sprint);

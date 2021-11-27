@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Application.UseCases.MoveIssue
+namespace Application.UseCases.MoveIssue;
+
+public class MoveIssueUseCase : IMoveIssueUseCase
 {
-    public class MoveIssueUseCase : IMoveIssueUseCase
+
+    public Task Execute(Guid IssueId)
     {
-
-        public Task Execute(Guid IssueId)
-        {
-            throw new NotImplementedException();
-        }
-
+        throw new NotImplementedException();
     }
+
 }

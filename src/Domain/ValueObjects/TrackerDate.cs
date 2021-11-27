@@ -2,7 +2,7 @@
 
 namespace Domain.ValueObjects
 {
-    public readonly struct TrackerDate: IEquatable<TrackerDate>
+    public readonly struct TrackerDate : IEquatable<TrackerDate>
     {
         public DateTime Date { get; }
 

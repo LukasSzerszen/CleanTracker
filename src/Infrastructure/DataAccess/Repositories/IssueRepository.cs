@@ -5,28 +5,27 @@ using System;
 
 using System.Threading.Tasks;
 
-namespace Infrastructure.Repositories
+namespace Infrastructure.Repositories;
+
+public class IssueRepository : IIssueRepository
 {
-    public class IssueRepository : IIssueRepository
+    public Task Add(Issue issue)
     {
-        public Task Add(Issue issue)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
+    }
 
-        public Task Delete(TrackerId issueId)
-        {
-            throw new NotImplementedException();
-        }
+    public Task Delete(TrackerId issueId)
+    {
+        throw new NotImplementedException();
+    }
 
-        public Task<IIssue> Get(TrackerId issueId)
-        {
-            throw new NotImplementedException();
-        }
+    public Task<IIssue> Get(TrackerId issueId)
+    {
+        throw new NotImplementedException();
+    }
 
-        public Task Update(TrackerId issueId, Issue issue)
-        {
-            throw new NotImplementedException();
-        }
+    public Task Update(TrackerId issueId, Issue issue)
+    {
+        throw new NotImplementedException();
     }
 }

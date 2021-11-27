@@ -1,14 +1,8 @@
 ﻿using Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Interfaces
+namespace Domain.Interfaces;
+
+public interface IIssueFactory
 {
-    public interface IIssueFactory
-    {
-        Issue NewIssue(IssueTitle issueTitle);
-    }
+    Issue NewIssue(IssueTitle issueTitle);
 }

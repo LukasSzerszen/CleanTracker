@@ -2,21 +2,26 @@
 
 namespace Domain.ValueObjects;
 
-public readonly struct FirstName : IEquatable<FirstName>
+public record FirstName
 {
     public string Name { get; }
 
-    public FirstName(string name) => this.Name = name;
-
-    public bool Equals(FirstName other) => this.Name == other.Name;
-
-    public static bool operator ==(FirstName left, FirstName right) => left.Equals(right);
-
-    public static bool operator !=(FirstName left, FirstName right) => !(left == right);
+    private FirstName(string name) => this.Name = name;
 
     public override string ToString() => this.Name.ToString();
 
-    public override bool Equals(object obj) => obj is FirstName && Equals((TrackerId)obj);
-
     public override int GetHashCode() => HashCode.Combine(this.Name);
+
+    public static Result<FirstName> Build(string name)
+    {
+        var result = new Result<FirstName>();
+        if(name.Length <= 0)
+        {
+            result.Notifcation.Add(nameof(name), "can't be empty");
+            return result;
+        }
+
+        result.Value = new FirstName(name);
+        return result;
+    }
 }

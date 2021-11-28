@@ -12,5 +12,4 @@ public interface ISprint
 
     public IssueCollection Issues { get; }
 
-    public int TotalPoints();
 }

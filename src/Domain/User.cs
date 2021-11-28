@@ -1,20 +1,23 @@
 ﻿using Domain.ValueObjects;
-
+using System;
 
 namespace Domain;
 
 public class User : IUser
 {
     public TrackerId Id { get; }
-    public FirstName UserName { get; set; }
-    public LastName UserLastName { get; set; }
+    public FirstName UserFirstName { get; private set; }
+    public LastName UserLastName { get; private set; }
 
-    public User(TrackerId id, FirstName firstName, LastName lastName)
+    public User(FirstName firstName, LastName lastName)
     {
-        Id = id;
-        UserName = firstName;
+        Id = new TrackerId(Guid.NewGuid());
+        UserFirstName = firstName;
         UserLastName = lastName;
     }
-    public string GetFullName() => this.UserName.Name + " " + this.UserLastName.Name;
+    public string GetUserName() => this.UserFirstName.Name + " " + this.UserLastName.Name;
 
+    public void ChangeFirstName(FirstName firstName) => this.UserFirstName = firstName;
+
+    public void ChangeLastName(LastName lastName) => this.UserLastName = lastName;
 }

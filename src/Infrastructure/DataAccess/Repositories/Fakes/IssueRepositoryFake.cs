@@ -34,15 +34,10 @@ public class IssueRepositoryFake : IIssueRepository
 
     public async Task<IIssue> Get(TrackerId issueId)
     {
-        Issue? issue = _context.Issues
+        Issue issue = _context.Issues
             .Where(issue => issue.Id.Equals(issueId))
             .Select(issue => issue)
             .SingleOrDefault();
-
-        if (issue == null)
-        {
-            return IssueNull.Instance;
-        }
 
         return await Task.FromResult(issue).ConfigureAwait(false);
     }

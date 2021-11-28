@@ -2,22 +2,27 @@
 
 namespace Domain.ValueObjects;
 
-public readonly struct IssueDescription : IEquatable<IssueDescription>
+public record IssueDescription 
 {
     public string Description { get; }
 
-    public IssueDescription(string description) => this.Description = description;
-
-    public bool Equals(IssueDescription other) => this.Description == other.Description;
-
-    public static bool operator ==(IssueDescription left, IssueDescription right) => left.Equals(right);
-
-    public static bool operator !=(IssueDescription left, IssueDescription right) => !(left == right);
+    private IssueDescription(string description) => Description = description;
 
     public override string ToString() => this.Description.ToString();
 
-    public override bool Equals(object obj) => obj is IssueDescription && Equals((IssueDescription)obj);
-
     public override int GetHashCode() => HashCode.Combine(this.Description);
+
+    public static Result<IssueDescription> Build(string description)
+    {
+        var result = new Result<IssueDescription>();
+        if (description.Length > 80)
+        {
+            result.Notifcation.Add(nameof(description), "must be smaller than 80 characters");
+            return result;
+        }
+        var issueDescription = new IssueDescription(description);
+        result.Value = issueDescription;
+        return result;
+    }
 
 }

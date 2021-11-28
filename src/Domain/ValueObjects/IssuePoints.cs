@@ -2,22 +2,27 @@
 
 namespace Domain.ValueObjects;
 
-public readonly struct IssuePoints : IEquatable<IssuePoints>
+public record IssuePoints 
 {
     public int Points { get; }
+   
+    private IssuePoints(int points) => Points = points;
 
-    public IssuePoints(int points) => Points = points;
-
-    public bool Equals(IssuePoints other) => this.Points == other.Points;
-
-    public static bool operator ==(IssuePoints left, IssuePoints right) => left.Equals(right);
-
-    public static bool operator !=(IssuePoints left, IssuePoints right) => !(left == right);
-
-    public override string ToString() => this.Points.ToString();
-
-    public override bool Equals(object obj) => obj is IssuePoints && Equals((IssuePoints)obj);
+    public override string ToString() => Points.ToString();
 
     public override int GetHashCode() => HashCode.Combine(this.Points);
+
+    public static Result<IssuePoints> Build(int points)
+    {
+        var result = new Result<IssuePoints>();
+        if(points <= 0)
+        {
+            result.Notifcation.Add(nameof(points), "must be larger than zero");
+            return result;
+        }
+        var issuePoints = new IssuePoints(points);
+        result.Value = issuePoints;
+        return result;
+    }
 
 }

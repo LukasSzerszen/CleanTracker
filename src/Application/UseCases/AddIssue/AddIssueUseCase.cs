@@ -1,5 +1,6 @@
 ﻿using Application.UseCases.AddIssue;
 using Domain;
+using Domain.Builders;
 using Domain.Interfaces;
 using Domain.ValueObjects;
 using System.Threading.Tasks;
@@ -18,11 +19,12 @@ public class AddIssueUseCase : IAddIssueUseCase
         _issueFactory = issueFactory;
         _outputPort = new AddIssuePresenter();
     }
-    public Task Execute(string issuetitle) => AddIssue(new IssueTitle(issuetitle));
+    public Task Execute(string issuetitle) => AddIssue(issuetitle);
 
-    private async Task AddIssue(IssueTitle issueTitle)
+    private async Task AddIssue(string issueTitle)
     {
-        Issue issue = _issueFactory.NewIssue(issueTitle);
+        var title = IssueTitle.Build(issueTitle).Value;
+        Issue issue = new IssueBuilder(title).Build();
         await _issueRepository.Add(issue).ConfigureAwait(false);
         _outputPort?.Ok(issue);
     }

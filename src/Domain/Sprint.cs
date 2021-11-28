@@ -23,6 +23,4 @@ public class Sprint : ISprint
         StartDate = startDate;
         EndDate = endDate;
     }
-
-    public int TotalPoints() => Issues.GetTotalPoints();
 }

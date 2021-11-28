@@ -5,8 +5,8 @@ namespace Domain;
 public interface IUser
 {
     public TrackerId Id { get; }
-    public FirstName UserName { get; set; }
-    public LastName UserLastName { get; set; }
-    public string GetFullName();
+    public FirstName UserFirstName { get; }
+    public LastName UserLastName { get; }
+    public string GetUserName();
 
 }

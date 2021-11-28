@@ -1,5 +1,6 @@
 ﻿using Application.UseCases.AddIssue;
 using Domain;
+using Domain.Builders;
 using Domain.Interfaces;
 using Domain.ValueObjects;
 using System.Threading.Tasks;

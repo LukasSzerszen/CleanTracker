@@ -20,7 +20,7 @@ public class Issue : IIssue, IAssignable
 
     public Issue(IssueTitle title)
     {
-        Id = new TrackerId(Guid.NewGuid());
+        Id = TrackerId.Build(Guid.NewGuid()).Value;
         Title = title;
     }
     public Issue(TrackerId id, IssueDescription description)

@@ -38,7 +38,7 @@ public class IssueTrackerContextFake
         issue2.Assign(user1);
 
         Sprint sprint = new(
-             new TrackerId(Guid.NewGuid())
+             TrackerId.Build(Guid.NewGuid()).Value
             );
 
         sprint.Issues.Add(issue1.Id, issue1);

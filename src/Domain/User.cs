@@ -11,7 +11,7 @@ public class User : IUser
 
     public User(FirstName firstName, LastName lastName)
     {
-        Id = new TrackerId(Guid.NewGuid());
+        Id = TrackerId.Build(Guid.NewGuid()).Value;
         UserFirstName = firstName;
         UserLastName = lastName;
     }

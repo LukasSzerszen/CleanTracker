@@ -3,6 +3,7 @@ using Domain;
 using Domain.Builders;
 using Domain.Interfaces;
 using Domain.ValueObjects;
+using System;
 using System.Threading.Tasks;
 
 namespace Application.UseCases.AddIssueUseCase;
@@ -17,18 +18,19 @@ public class AddIssueUseCase : IAddIssueUseCase
         _issueRepository = issueRepository;
         _outputPort = new AddIssuePresenter();
     }
-    public Task Execute(string issuetitle) => AddIssue(issuetitle);
+    public async Task Execute(string issuetitle) => await AddIssue(issuetitle);
 
     private async Task AddIssue(string issueTitle)
     {
         var title = IssueTitle.Build(issueTitle).Value;
-        Issue issue = new IssueBuilder(title).Build();
+        var id = TrackerId.Build(Guid.NewGuid()).Value;
+        Issue issue = new IssueBuilder(id, title).Build();
         await _issueRepository.Add(issue).ConfigureAwait(false);
         _outputPort?.Ok(issue);
     }
 
-    public void SetOutputPort(IOutputPort output)
+    public void SetOutputPort(IOutputPort outputPort)
     {
-        _outputPort = output;
+        _outputPort = outputPort;
     }
 }

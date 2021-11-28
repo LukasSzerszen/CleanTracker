@@ -19,7 +19,7 @@ public class IssueRepository : IIssueRepository
         throw new NotImplementedException();
     }
 
-    public Task<IIssue> Get(TrackerId issueId)
+    public Task<Issue> Get(TrackerId issueId)
     {
         throw new NotImplementedException();
     }

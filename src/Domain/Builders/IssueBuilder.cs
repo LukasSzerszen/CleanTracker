@@ -6,9 +6,9 @@ public class IssueBuilder : IIssueBuilder
 {
     private Issue Issue;
 
-    public IssueBuilder(IssueTitle title)
+    public IssueBuilder(TrackerId trackerId,IssueTitle title)
     {
-        Issue = new Issue(title);
+        Issue = new Issue(trackerId, title);
     }
     public IIssueBuilder WithAsignee(IUser user)
     {

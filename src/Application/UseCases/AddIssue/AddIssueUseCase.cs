@@ -11,12 +11,10 @@ public class AddIssueUseCase : IAddIssueUseCase
 {
     private readonly IIssueRepository _issueRepository;
     private IOutputPort _outputPort;
-    private readonly IIssueFactory _issueFactory;
 
-    public AddIssueUseCase(IIssueRepository issueRepository, IIssueFactory issueFactory)
+    public AddIssueUseCase(IIssueRepository issueRepository)
     {
         _issueRepository = issueRepository;
-        _issueFactory = issueFactory;
         _outputPort = new AddIssuePresenter();
     }
     public Task Execute(string issuetitle) => AddIssue(issuetitle);

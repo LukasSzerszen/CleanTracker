@@ -1,6 +1,5 @@
 ﻿using Application.UseCases.AddIssue;
 using Application.UseCases.AddIssueUseCase;
-using Infrastructure.DataAccess.Factories;
 using Xunit;
 
 namespace UnitTests.AddIssue;
@@ -15,8 +14,7 @@ public sealed class AddIssueTest : IClassFixture<StandardFixture>
     public void AddIssueUseCase_Adds_Issue_To_Collection()
     {
         AddIssuePresenter presenter = new();
-        IssueFactory issuefactory = new();
-        AddIssueUseCase sut = new(_fixture.IssueRepositoryFake, issuefactory);
+        AddIssueUseCase sut = new(_fixture.IssueRepositoryFake);
         sut.SetOutputPort(presenter);
         string issueTitle = "new issue";
 

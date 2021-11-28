@@ -32,7 +32,7 @@ public class IssueRepositoryFake : IIssueRepository
         await Task.CompletedTask.ConfigureAwait(false);
     }
 
-    public async Task<IIssue> Get(TrackerId issueId)
+    public async Task<Issue> Get(TrackerId issueId)
     {
         Issue issue = _context.Issues
             .Where(issue => issue.Id.Equals(issueId))

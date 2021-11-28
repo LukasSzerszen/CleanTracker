@@ -13,6 +13,9 @@ public class IssueTrackerContextFake
 
     public IssueTrackerContextFake()
     {
+        var issueId1 = TrackerId.Build(new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890")).Value;
+        var issueId2 = TrackerId.Build(new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298")).Value;
+
         var title1 = IssueTitle.Build("issue1").Value;
         var title2 = IssueTitle.Build("issue2").Value;
 
@@ -28,9 +31,9 @@ public class IssueTrackerContextFake
 
         var user1 = new UserBuilder(firstname1, lastname2).Build();
 
-        Issue issue1 = new IssueBuilder(title1).WithPoints(points1).WithDescription(description1).Build();
+        Issue issue1 = new IssueBuilder(issueId1, title1).WithPoints(points1).WithDescription(description1).Build();
 
-        Issue issue2 = new IssueBuilder(title2).WithPoints(points2).WithDescription(description2).WithAsignee(user1).Build();
+        Issue issue2 = new IssueBuilder(issueId2, title2).WithPoints(points2).WithDescription(description2).WithAsignee(user1).Build();
 
         Issues.Add(issue1);
         Issues.Add(issue2);

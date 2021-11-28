@@ -4,21 +4,21 @@ using Xunit;
 
 namespace UnitTests.AddIssue;
 
-public sealed class AddIssueTest : IClassFixture<StandardFixture>
+public sealed class AddIssueTests : IClassFixture<StandardFixture>
 {
     private readonly StandardFixture _fixture;
 
-    public AddIssueTest(StandardFixture fixture) => _fixture = fixture;
+    public AddIssueTests(StandardFixture fixture) => _fixture = fixture;
 
     [Fact]
-    public void AddIssueUseCase_Adds_Issue_To_Collection()
+    public async void AddIssueUseCase_Adds_Issue_To_Collection()
     {
         AddIssuePresenter presenter = new();
         AddIssueUseCase sut = new(_fixture.IssueRepositoryFake);
         sut.SetOutputPort(presenter);
         string issueTitle = "new issue";
 
-        sut.Execute(issueTitle);
+        await sut.Execute(issueTitle);
 
         Assert.NotNull(presenter.Issue);
     }

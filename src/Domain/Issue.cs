@@ -6,6 +6,7 @@ namespace Domain;
 
 public class Issue : IIssue, IAssignable
 {
+
     public TrackerId Id { get; }
 
     public IssueTitle Title { get; }
@@ -18,15 +19,10 @@ public class Issue : IIssue, IAssignable
 
     public IssueProgressStatus Status { get; set; }
 
-    public Issue(IssueTitle title)
-    {
-        Id = TrackerId.Build(Guid.NewGuid()).Value;
-        Title = title;
-    }
-    public Issue(TrackerId id, IssueDescription description)
+    public Issue(TrackerId id, IssueTitle title)
     {
         Id = id;
-        Description = description;
+        Title = title;
     }
 
     public Issue(TrackerId id, IssueDescription description, IssuePoints points, IUser assignedTo)

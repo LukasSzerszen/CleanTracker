@@ -2,9 +2,9 @@
 
 namespace Domain.ValueObjects;
 
-public record FirstName
+public record struct FirstName
 {
-    public string Name { get; }
+    public readonly string Name { get; }
 
     private FirstName(string name) => this.Name = name;
 

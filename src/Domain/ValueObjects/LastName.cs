@@ -2,7 +2,7 @@
 
 namespace Domain.ValueObjects;
 
-public record LastName : IEquatable<LastName>
+public record struct LastName 
 {
     public string Name { get; }
 

@@ -2,9 +2,9 @@
 
 namespace Domain.ValueObjects;
 
-public record IssueDescription 
+public record struct IssueDescription 
 {
-    public string Description { get; }
+    public readonly string Description { get; }
 
     private IssueDescription(string description) => Description = description;
 

@@ -2,9 +2,9 @@
 
 namespace Domain.ValueObjects;
 
-public record IssuePoints 
+public record struct IssuePoints 
 {
-    public int Points { get; }
+    public readonly int Points { get; }
    
     private IssuePoints(int points) => Points = points;
 

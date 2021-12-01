@@ -2,9 +2,9 @@
 
 namespace Domain.ValueObjects;
 
-public record TrackerId 
+public record struct TrackerId 
 {
-    public Guid Id { get; }
+    public readonly Guid Id { get; }
 
     private TrackerId(Guid id) => this.Id = id;
 

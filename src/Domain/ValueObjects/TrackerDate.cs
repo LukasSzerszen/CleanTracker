@@ -2,9 +2,9 @@
 
 namespace Domain.ValueObjects;
 
-public record TrackerDate 
+public record struct TrackerDate 
 {
-    public DateTime Date { get; }
+    public readonly DateTime Date { get; }
 
     private TrackerDate(DateTime date) => this.Date = date;
 

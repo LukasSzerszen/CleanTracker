@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Application.UseCases.GetIssue;
+namespace Application.UseCases.DeleteIssue;
 
-public interface IGetIssueUseCase
+public interface IDeleteIssueUseCase
 {
     Task Execute(Guid issueId);
     void SetOutputPort(IOutputPort outputPort);

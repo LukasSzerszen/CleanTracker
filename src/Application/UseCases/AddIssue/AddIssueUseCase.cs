@@ -1,10 +1,10 @@
 ﻿using Application.UseCases.AddIssue;
 using Domain;
-using Domain.Builders;
 using Domain.Interfaces;
 using Domain.ValueObjects;
 using System;
 using System.Threading.Tasks;
+using static Domain.Issue;
 
 namespace Application.UseCases.AddIssueUseCase;
 
@@ -24,7 +24,7 @@ public class AddIssueUseCase : IAddIssueUseCase
     {
         var title = IssueTitle.Build(issueTitle).Value;
         var id = TrackerId.Build(Guid.NewGuid()).Value;
-        Issue issue = new IssueBuilder(id, title).Build();
+        Issue issue = IssueBuilderFactory.Create(id, title).Build();
         await _issueRepository.Add(issue).ConfigureAwait(false);
         _outputPort?.Ok(issue);
     }

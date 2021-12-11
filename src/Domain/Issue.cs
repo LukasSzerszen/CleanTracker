@@ -42,4 +42,47 @@ public class Issue : IIssue, IAssignable
 
     public void UpdateProgress(IssueProgressStatus status) => Status = status;
 
+    public class IssueBuilder : IIssueBuilder
+    {
+        private Issue Issue;
+        public IssueBuilder(TrackerId trackerId, IssueTitle title)
+        {
+            this.Issue= new Issue(trackerId, title);
+           
+        }
+
+        public Issue Build()
+        {
+            var result = this.Issue;
+            Issue = null;
+            return result;
+        }
+
+        public IIssueBuilder WithAsignee(IUser user)
+        {
+            Issue.AssignedTo = user;
+            return this;
+        }
+
+        public IIssueBuilder WithDescription(IssueDescription description)
+        {
+            Issue.Description = description;
+            return this;
+        }
+
+        public IIssueBuilder WithPoints(IssuePoints points)
+        {
+            Issue.Points = points;
+            return this;
+        }
+    }
+
+    public static class IssueBuilderFactory
+    {
+        public static IssueBuilder Create(TrackerId trackerId, IssueTitle title)
+        {
+            return new IssueBuilder(trackerId, title);
+        }
+    }
+
 }

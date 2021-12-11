@@ -1,8 +1,9 @@
 ﻿using Domain;
-using Domain.Builders;
 using Domain.ValueObjects;
 using System;
 using System.Collections.ObjectModel;
+using static Domain.Issue;
+using static Domain.User;
 
 namespace Infrastructure.Repositories;
 
@@ -29,11 +30,11 @@ public class IssueTrackerContextFake
 
         var lastname2 = LastName.Build("Doe").Value;
 
-        var user1 = new UserBuilder(firstname1, lastname2).Build();
+        var user1 = UserBuilderFactory.Create(firstname1, lastname2).Build();
 
-        Issue issue1 = new IssueBuilder(issueId1, title1).WithPoints(points1).WithDescription(description1).Build();
+        Issue issue1 = IssueBuilderFactory.Create(issueId1, title1).WithPoints(points1).WithDescription(description1).Build();
 
-        Issue issue2 = new IssueBuilder(issueId2, title2).WithPoints(points2).WithDescription(description2).WithAsignee(user1).Build();
+        Issue issue2 = IssueBuilderFactory.Create(issueId2, title2).WithPoints(points2).WithDescription(description2).WithAsignee(user1).Build();
 
         Issues.Add(issue1);
         Issues.Add(issue2);

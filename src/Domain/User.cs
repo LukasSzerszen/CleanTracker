@@ -22,7 +22,6 @@ public class User : IUser
 
     public void ChangeLastName(LastName lastName) => this.UserLastName = lastName;
 
-
     public class UserBuilder : IUserBuilder
     {
         private User User;

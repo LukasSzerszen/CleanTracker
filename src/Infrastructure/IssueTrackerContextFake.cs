@@ -24,7 +24,7 @@ public class IssueTrackerContextFake
         var description2 = IssueDescription.Build("description2").Value;
 
         var points1 = IssuePoints.Build(1).Value;
-        var points2 = IssuePoints.Build(1).Value;
+        var points2 = IssuePoints.Build(2).Value;
 
         var firstname1 = FirstName.Build("John").Value;
 

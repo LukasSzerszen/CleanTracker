@@ -25,15 +25,6 @@ public class Issue : IIssue, IAssignable
         Title = title;
     }
 
-    public Issue(TrackerId id, IssueDescription description, IssuePoints points, IUser assignedTo)
-    {
-        Id = id;
-        Description = description;
-        Points = points;
-        AssignedTo = assignedTo;
-        Status = IssueProgressStatus.NotStarted;
-    }
-
     public void UpdatePoints(IssuePoints points) => Points = points;
 
     public void UpdateDescription(IssueDescription description) => Description = description;

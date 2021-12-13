@@ -23,17 +23,18 @@ public class MoveIssueUseCase : IMoveIssueUseCase
     }
 
 
-    public Task Execute(Guid issueId, IssueProgressStatus issueProgressStauts)
+    public async Task Execute(Guid issueId, IssueProgressStatus issueProgressStauts)
     {
         var id = TrackerId.Build(issueId).Value;
-
-        return this.MoveIssue(id, issueProgressStauts);
+        await this.MoveIssue(id, issueProgressStauts);
+        return;
     }
 
     private async Task MoveIssue(TrackerId issueId, IssueProgressStatus issueProgressStatus)
     {
         var issue = await _issueRepository.Get(issueId);
         issue.UpdateProgress(issueProgressStatus);
+        _outputPort.Ok();
         return;
     }
 }

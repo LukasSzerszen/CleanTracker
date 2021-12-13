@@ -22,5 +22,4 @@ public class DeleteIssueUseCase : IDeleteIssueUseCase
     {
         throw new NotImplementedException();
     }
-
 }

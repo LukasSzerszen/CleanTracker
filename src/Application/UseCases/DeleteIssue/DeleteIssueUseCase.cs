@@ -1,4 +1,6 @@
-﻿using Domain.Interfaces;
+﻿using Domain;
+using Domain.Interfaces;
+using Domain.ValueObjects;
 using System;
 using System.Threading.Tasks;
 
@@ -8,18 +10,29 @@ public class DeleteIssueUseCase : IDeleteIssueUseCase
 {
     private readonly IIssueRepository _issueRepository;
     private IOutputPort _outputPort;
+    public Notification Notification;
 
     public DeleteIssueUseCase(IIssueRepository issueRepository)
     {
         _issueRepository = issueRepository;
+        Notification = new Notification();
     }
 
     public void SetOutputPort(IOutputPort outputPort)
     {
         _outputPort = outputPort;
     }
-    public Task Execute(Guid issueId)
+    public async Task Execute(Guid issueId)
     {
-        throw new NotImplementedException();
+        var trackerId = TrackerId.Build(issueId);
+        await DeleteIssue(trackerId.Value);
+        return;
+    }
+
+    private async Task DeleteIssue(TrackerId issueId)
+    {
+        await _issueRepository.Delete(issueId);
+        _outputPort.Ok();
+        return;
     }
 }

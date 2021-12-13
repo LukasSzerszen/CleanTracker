@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Domain;
 
-public sealed class Notifcation
+public sealed class Notification
 {
     private readonly IDictionary<string, IList<string>> _errorMessages = new Dictionary<string, IList<string>>();
     
@@ -29,6 +29,4 @@ public sealed class Notifcation
 
         this._errorMessages[key].Add(message);
     }
-
-
 }

@@ -62,11 +62,11 @@ namespace Infrastructure.Migrations
                         new
                         {
                             IssueId = new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298"),
-                            AssignedTo = new Guid("a59876cb-0e46-47d8-aedb-5358881b7619"),
+                            AssignedTo = new Guid("c571342a-74f3-4c60-b39a-4b7625aea957"),
                             Description = "description2",
                             Points = 2,
                             Status = "0",
-                            Title = "issue1"
+                            Title = "issue2"
                         });
                 });
 #pragma warning restore 612, 618

@@ -28,7 +28,7 @@ namespace Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Issue",
                 columns: new[] { "IssueId", "AssignedTo", "Description", "Points", "Status", "Title" },
-                values: new object[] { new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298"), new Guid("a59876cb-0e46-47d8-aedb-5358881b7619"), "description2", 2, "0", "issue1" });
+                values: new object[] { new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298"), new Guid("c571342a-74f3-4c60-b39a-4b7625aea957"), "description2", 2, "0", "issue2" });
 
             migrationBuilder.InsertData(
                 table: "Issue",

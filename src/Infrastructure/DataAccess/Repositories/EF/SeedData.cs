@@ -12,7 +12,7 @@ public sealed class SeedData
     public readonly static TrackerId IssueId1 = TrackerId.Build(new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890")).Value;
     public readonly static TrackerId IssueId2 = TrackerId.Build(new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298")).Value;
     public readonly static IssueTitle IssueTitle1 = IssueTitle.Build("issue1").Value;
-    public readonly static IssueTitle IssueTitle2 = IssueTitle.Build("issue1").Value;
+    public readonly static IssueTitle IssueTitle2 = IssueTitle.Build("issue2").Value;
     public readonly static IssueDescription Description1 = IssueDescription.Build("description1").Value;
     public readonly static IssueDescription Description2 = IssueDescription.Build("description2").Value;
     public readonly static IssuePoints Points1 = IssuePoints.Build(1).Value;
@@ -34,17 +34,5 @@ public sealed class SeedData
         Issue issue2 = IssueBuilderFactory.Create(IssueId2, IssueTitle2).WithPoints(Points2).WithDescription(Description2).WithAsignee(user1).Build();
 
         builder.Entity<Issue>().HasData(issue1, issue2);
-
-        //builder.Entity<Issue>().HasData(new
-        //{
-        //    IssueId = IssueId1,
-        //    Title = IssueTitle1,
-        //},
-        //new
-        //{
-        //    IssueId = IssueId2,
-        //    Title = IssueTitle2,
-        //});
-
     }
 }

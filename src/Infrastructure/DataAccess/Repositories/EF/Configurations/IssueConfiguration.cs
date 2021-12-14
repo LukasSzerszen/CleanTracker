@@ -16,7 +16,7 @@ public class IssueConfiguration : IEntityTypeConfiguration<Issue>
         }
 
         builder.ToTable(nameof(Issue));
-        builder.HasKey(x => x.IssueId);
+        //builder.HasKey(x => x.IssueId);
 
         builder.Property(x => x.IssueId)
             .HasConversion(

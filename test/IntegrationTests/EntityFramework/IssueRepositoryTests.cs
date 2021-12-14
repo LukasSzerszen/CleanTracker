@@ -12,6 +12,5 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
     [Fact]
     public async void GetIssueDoesNotThrowException()
     {
-        IssueRepository issueRepository = new IssueRepository(this._fixture.Context);
     }
 }

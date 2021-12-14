@@ -45,8 +45,8 @@ public class IssueTrackerContextFake
              TrackerId.Build(Guid.NewGuid()).Value
             );
 
-        sprint.Issues.Add(issue1.Id, issue1);
-        sprint.Issues.Add(issue2.Id, issue2);
+        sprint.Issues.Add(issue1.IssueId, issue1);
+        sprint.Issues.Add(issue2.IssueId, issue2);
 
         Sprints.Add(sprint);
     }

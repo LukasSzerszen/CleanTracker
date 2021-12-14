@@ -6,13 +6,13 @@ namespace Domain;
 
 public class User : IUser
 {
-    public TrackerId Id { get; }
+    public TrackerId UserId { get; }
     public FirstName UserFirstName { get; private set; }
     public LastName UserLastName { get; private set; }
 
     public User(FirstName firstName, LastName lastName)
     {
-        Id = TrackerId.Build(Guid.NewGuid()).Value;
+        UserId = TrackerId.Build(Guid.NewGuid()).Value;
         UserFirstName = firstName;
         UserLastName = lastName;
     }

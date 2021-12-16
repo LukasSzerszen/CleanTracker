@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(IssueTrackerContext))]
-    [Migration("20211214195302_InitialCreate")]
+    [Migration("20211216142726_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,14 +29,13 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("IssueId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AssignedTo")
+                    b.Property<Guid?>("AssignedTo")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Points")
+                    b.Property<int?>("Points")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
@@ -55,19 +54,18 @@ namespace Infrastructure.Migrations
                         new
                         {
                             IssueId = new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890"),
-                            AssignedTo = new Guid("00000000-0000-0000-0000-000000000000"),
                             Description = "description1",
                             Points = 1,
-                            Status = "0",
+                            Status = "NotStarted",
                             Title = "issue1"
                         },
                         new
                         {
                             IssueId = new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298"),
-                            AssignedTo = new Guid("c571342a-74f3-4c60-b39a-4b7625aea957"),
+                            AssignedTo = new Guid("53535aa8-12b6-4d67-bc9e-93fbc9bea802"),
                             Description = "description2",
                             Points = 2,
-                            Status = "0",
+                            Status = "NotStarted",
                             Title = "issue2"
                         });
                 });

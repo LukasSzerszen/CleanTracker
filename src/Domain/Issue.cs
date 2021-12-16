@@ -11,11 +11,11 @@ public class Issue : IIssue, IAssignable
 
     public IssueTitle Title { get; }
 
-    public IssueDescription Description { get; set; }
+    public IssueDescription? Description { get; set; }
 
-    public IssuePoints Points { get; set; }
+    public IssuePoints? Points { get; set; }
 
-    public TrackerId AssignedTo { get; set; }
+    public TrackerId? AssignedTo { get; set; }
 
     public IssueProgressStatus Status { get; set; }
 
@@ -23,6 +23,7 @@ public class Issue : IIssue, IAssignable
     {
         IssueId = issueId;
         Title = title;
+        Status = IssueProgressStatus.NotStarted;
     }
 
     public void UpdatePoints(IssuePoints points) => Points = points;

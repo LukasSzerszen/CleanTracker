@@ -16,7 +16,6 @@ public class IssueConfiguration : IEntityTypeConfiguration<Issue>
         }
 
         builder.ToTable(nameof(Issue));
-        //builder.HasKey(x => x.IssueId);
 
         builder.Property(x => x.IssueId)
             .HasConversion(
@@ -33,18 +32,21 @@ public class IssueConfiguration : IEntityTypeConfiguration<Issue>
 
         builder.Property(x => x.Description)
             .HasConversion(
-            v => v.Description,
-            v => IssueDescription.Build(v).Value);
+            v =>  v.Value.Description ,
+            v => IssueDescription.Build(v).Value)
+            .IsRequired(false);
 
         builder.Property(x => x.Points)
             .HasConversion(
-            v => v.Points,
-            v => IssuePoints.Build(v).Value);
+            v => v.Value.Points,
+            v => IssuePoints.Build(v).Value)
+            .IsRequired(false);
 
         builder.Property(x => x.AssignedTo)
             .HasConversion(
-            v => v.Id,
-            v => TrackerId.Build(v).Value);
+            v => v.Value.Id,
+            v => TrackerId.Build(v).Value)
+            .IsRequired(false);
 
         builder.Property(x => x.Status)
             .HasConversion<string>();

@@ -1,31 +1,42 @@
 ﻿using Domain;
 using Domain.Interfaces;
 using Domain.ValueObjects;
+using Infrastructure.DataAccess.Repositories.EF;
+using Microsoft.EntityFrameworkCore;
 using System;
-
 using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories;
 
 public class IssueRepository : IIssueRepository
 {
-    public Task Add(Issue issue)
+    public readonly IssueTrackerContext _context;
+    public IssueRepository(IssueTrackerContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public async Task Add(Issue issue)
+    {
+        await _context.Issues
+            .AddAsync(issue)
+            .ConfigureAwait(false);
     }
 
-    public Task Delete(TrackerId issueId)
+    public async Task Delete(TrackerId issueId)
     {
-        throw new NotImplementedException();
+        await _context.Database
+            .ExecuteSqlRawAsync("DELETE FROM Issue WHERE IssueId=@p0", issueId.Id);
     }
 
-    public Task<Issue> Get(TrackerId issueId)
+    public async Task<Issue> Get(TrackerId issueId)
     {
-        throw new NotImplementedException();
+        return await _context.Issues
+            .FindAsync(issueId)
+            .ConfigureAwait(false);
     }
 
-    public Task Update(TrackerId issueId, Issue issue)
+    public async Task Update(Issue issue)
     {
-        throw new NotImplementedException();
+        await this._context.AddAsync(issue).ConfigureAwait(false); 
     }
 }

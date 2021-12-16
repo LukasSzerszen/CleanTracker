@@ -42,10 +42,10 @@ public class IssueRepositoryFake : IIssueRepository
         return await Task.FromResult(issue).ConfigureAwait(false);
     }
 
-    public async Task Update(TrackerId issueId, Issue issue)
+    public async Task Update(Issue issue)
     {
         Issue? oldIssue = _context.Issues
-            .SingleOrDefault(issue => issue.IssueId.Equals(issueId));
+            .SingleOrDefault(issue => issue.IssueId.Equals(issue.IssueId));
 
         if (oldIssue != null)
         {

@@ -11,12 +11,16 @@ public sealed class SeedData
 {
     public readonly static TrackerId IssueId1 = TrackerId.Build(new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890")).Value;
     public readonly static TrackerId IssueId2 = TrackerId.Build(new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298")).Value;
+    public readonly static TrackerId IssueId3 = TrackerId.Build(new Guid("d5bf8c94-f7f3-4aaa-85fc-b02efd4a6d89")).Value;
     public readonly static IssueTitle IssueTitle1 = IssueTitle.Build("issue1").Value;
     public readonly static IssueTitle IssueTitle2 = IssueTitle.Build("issue2").Value;
+    public readonly static IssueTitle issueTitle3 = IssueTitle.Build("issue3").Value;
     public readonly static IssueDescription Description1 = IssueDescription.Build("description1").Value;
     public readonly static IssueDescription Description2 = IssueDescription.Build("description2").Value;
+    public readonly static IssueDescription Description3 = IssueDescription.Build("description3").Value;
     public readonly static IssuePoints Points1 = IssuePoints.Build(1).Value;
     public readonly static IssuePoints Points2 = IssuePoints.Build(2).Value;
+    public readonly static IssuePoints Points3 = IssuePoints.Build(4).Value;
     public readonly static FirstName Firstname1 = FirstName.Build("John").Value;
     public readonly static LastName Lastname1 = LastName.Build("Doe").Value;
 

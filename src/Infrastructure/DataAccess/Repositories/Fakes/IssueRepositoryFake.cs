@@ -20,7 +20,7 @@ public class IssueRepositoryFake : IIssueRepository
 
     public async Task Delete(TrackerId issueId)
     {
-        Issue? issue = _context.Issues.SingleOrDefault(issue => issue.Id.Equals(issueId));
+        Issue? issue = _context.Issues.SingleOrDefault(issue => issue.IssueId.Equals(issueId));
 
         if (issue == null)
         {
@@ -35,7 +35,7 @@ public class IssueRepositoryFake : IIssueRepository
     public async Task<Issue> Get(TrackerId issueId)
     {
         Issue issue = _context.Issues
-            .Where(issue => issue.Id.Equals(issueId))
+            .Where(issue => issue.IssueId.Equals(issueId))
             .Select(issue => issue)
             .SingleOrDefault();
 
@@ -45,7 +45,7 @@ public class IssueRepositoryFake : IIssueRepository
     public async Task Update(TrackerId issueId, Issue issue)
     {
         Issue? oldIssue = _context.Issues
-            .SingleOrDefault(issue => issue.Id.Equals(issueId));
+            .SingleOrDefault(issue => issue.IssueId.Equals(issueId));
 
         if (oldIssue != null)
         {

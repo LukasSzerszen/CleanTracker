@@ -7,30 +7,22 @@ namespace Domain;
 public class Issue : IIssue, IAssignable
 {
 
-    public TrackerId Id { get; }
+    public TrackerId IssueId { get; }
 
     public IssueTitle Title { get; }
 
-    public IssueDescription Description { get; set; }
+    public IssueDescription? Description { get; set; }
 
-    public IssuePoints Points { get; set; }
+    public IssuePoints? Points { get; set; }
 
-    public IUser AssignedTo { get; set; }
+    public TrackerId? AssignedTo { get; set; }
 
     public IssueProgressStatus Status { get; set; }
 
-    public Issue(TrackerId id, IssueTitle title)
+    public Issue(TrackerId issueId, IssueTitle title)
     {
-        Id = id;
+        IssueId = issueId;
         Title = title;
-    }
-
-    public Issue(TrackerId id, IssueDescription description, IssuePoints points, IUser assignedTo)
-    {
-        Id = id;
-        Description = description;
-        Points = points;
-        AssignedTo = assignedTo;
         Status = IssueProgressStatus.NotStarted;
     }
 
@@ -38,7 +30,7 @@ public class Issue : IIssue, IAssignable
 
     public void UpdateDescription(IssueDescription description) => Description = description;
 
-    public void Assign(IUser assignee) => AssignedTo = assignee;
+    public void Assign(IUser assignee) => AssignedTo = assignee.UserId;
 
     public void UpdateProgress(IssueProgressStatus status) => Status = status;
 
@@ -60,7 +52,7 @@ public class Issue : IIssue, IAssignable
 
         public IIssueBuilder WithAsignee(IUser user)
         {
-            Issue.AssignedTo = user;
+            Issue.AssignedTo = user.UserId;
             return this;
         }
 

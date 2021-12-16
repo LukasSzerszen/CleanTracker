@@ -24,7 +24,7 @@ public class IssueTrackerContextFake
         var description2 = IssueDescription.Build("description2").Value;
 
         var points1 = IssuePoints.Build(1).Value;
-        var points2 = IssuePoints.Build(1).Value;
+        var points2 = IssuePoints.Build(2).Value;
 
         var firstname1 = FirstName.Build("John").Value;
 
@@ -45,8 +45,8 @@ public class IssueTrackerContextFake
              TrackerId.Build(Guid.NewGuid()).Value
             );
 
-        sprint.Issues.Add(issue1.Id, issue1);
-        sprint.Issues.Add(issue2.Id, issue2);
+        sprint.Issues.Add(issue1.IssueId, issue1);
+        sprint.Issues.Add(issue2.IssueId, issue2);
 
         Sprints.Add(sprint);
     }

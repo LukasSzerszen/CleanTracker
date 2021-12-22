@@ -1,4 +1,6 @@
 using WebApi.Modules.Common.FeatureFlags;
+using WebApi.Modules.SqlServerExtensions;
+using WebApi.Modules.UseCaseExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddFeatureFlags(builder.Configuration);
+builder.Services
+    .AddFeatureFlags(builder.Configuration)
+    .AddUseCases()
+    .AddSQLServer(builder.Configuration);
 
 var app = builder.Build();
 

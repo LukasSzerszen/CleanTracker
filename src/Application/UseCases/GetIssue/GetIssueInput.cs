@@ -10,9 +10,9 @@ namespace Application.UseCases.GetIssue;
 public sealed class GetIssueInput
 {
     public Guid IssueId { get; set; }
-    public GetIssueInput(Guid IssueId)
+    public GetIssueInput(Guid issueId)
     {
-        this.IssueId = IssueId;
+        this.IssueId = issueId;
     }
     public void Validate(Notification notification)
     {

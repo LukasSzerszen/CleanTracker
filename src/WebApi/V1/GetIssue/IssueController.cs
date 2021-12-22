@@ -13,9 +13,9 @@ namespace WebApi.Controllers;
 
 public class IssueController : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("{IssueId:guid}", Name = "GetIssueV1")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ValidationProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationProblemDetails))]
     public async Task<IActionResult> GetIssue(
         [FromServices] IGetIssueUseCase useCase,
         [FromServices] Presenter presenter,

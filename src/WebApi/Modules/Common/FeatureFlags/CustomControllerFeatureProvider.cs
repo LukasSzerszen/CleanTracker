@@ -28,9 +28,10 @@ public sealed class CustomControllerFeatureProvider : IApplicationFeatureProvide
                     foreach (var argumentValue in constructorArgument.Value as IEnumerable)
                     {
                         var typedArgument = (CustomAttributeTypedArgument)argumentValue!;
-                        var typedArgumentValue = (Features)(int)typedArgument.Value!;
+                        string typedArgumentValue = (string) typedArgument.Value!;
+                        Enum.TryParse(typedArgumentValue, out Features type);
                         bool isFeatureEnabled = this._featureManager
-                            .IsEnabledAsync(typedArgumentValue.ToString())
+                            .IsEnabledAsync(type.ToString())
                             .ConfigureAwait(false)
                             .GetAwaiter()
                             .GetResult();

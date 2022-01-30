@@ -25,6 +25,7 @@ public sealed class Presenter : IGetIssueOutputPort
 
     public void Ok(Issue issue)
     {
-        this.ViewModel = new OkObjectResult(issue);
+        var response = new GetIssueResponse(issue);
+        this.ViewModel = new OkObjectResult(response);
     }
 }

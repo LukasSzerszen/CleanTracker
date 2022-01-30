@@ -11,13 +11,13 @@ public class Issue : IIssue, IAssignable
 
     public IssueTitle Title { get; }
 
-    public IssueDescription? Description { get; set; }
+    public IssueDescription? Description { get; private set; }
 
-    public IssuePoints? Points { get; set; }
+    public IssuePoints? Points { get; private set; }
 
-    public TrackerId? AssignedTo { get; set; }
+    public TrackerId? AssignedTo { get; private set; }
 
-    public IssueProgressStatus Status { get; set; }
+    public IssueProgressStatus? Status { get; private set; }
 
     public Issue(TrackerId issueId, IssueTitle title)
     {
@@ -26,13 +26,13 @@ public class Issue : IIssue, IAssignable
         Status = IssueProgressStatus.NotStarted;
     }
 
-    public void UpdatePoints(IssuePoints points) => Points = points;
+    public void UpdatePoints(IssuePoints? points) => Points = points;
 
-    public void UpdateDescription(IssueDescription description) => Description = description;
+    public void UpdateDescription(IssueDescription? description) => Description = description;
 
     public void Assign(IUser assignee) => AssignedTo = assignee.UserId;
 
-    public void UpdateProgress(IssueProgressStatus status) => Status = status;
+    public void UpdateProgress(IssueProgressStatus? status) => Status = status;
 
     public class IssueBuilder : IIssueBuilder
     {

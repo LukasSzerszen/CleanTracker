@@ -19,13 +19,18 @@ namespace Application.UseCases.GetIssue
             _issueRepository = issueRepository;
             OutputPort = new GetIssuePresenter();
         }
-        public async Task Execute(GetIssueInput input) => await GetIssue(input.IssueId);
-
-        private async Task GetIssue(Guid issueId)
+        public async Task Execute(GetIssueInput input)
         {
-            var trackerId = TrackerId.Build(issueId).Value;
+            input.Validate(_notification);
+            if (_notification.isInvalid)
+            {
+                this.OutputPort.BadRequest();
+                return;
+            }
+            var trackerId = TrackerId.Build(input.IssueId).Value;
             var issue = await _issueRepository.Get(trackerId);
             OutputPort?.Ok(issue);
+
         }
     }
 }

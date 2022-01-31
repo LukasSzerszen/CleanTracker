@@ -3,14 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement.Mvc;
 using System.ComponentModel.DataAnnotations;
 using WebApi.Models;
+using WebApi.Modules.Common.FeatureFlags;
 using WebApi.V1.GetIssue;
 
 namespace WebApi.Controllers;
 
 [FeatureGate("GetIssueUseCase")]
-[Route("api/[controller]")]
-[ApiController]
 [ApiVersion("1.0")]
+[Route("api/v1/[controller]")]
+[ApiController]
 public class IssueController : ControllerBase
 {
     [HttpGet("{IssueId:guid}", Name = "GetIssueV1")]

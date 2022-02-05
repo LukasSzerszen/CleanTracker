@@ -1,15 +1,13 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
 
 namespace Infrastructure.DataAccess.Repositories.EF;
 
 public sealed class IssueTrackerContext : DbContext
 {
 
-    public IssueTrackerContext(DbContextOptions<IssueTrackerContext> options) :base(options)
+    public IssueTrackerContext(DbContextOptions<IssueTrackerContext> options) : base(options)
     {
 
     }

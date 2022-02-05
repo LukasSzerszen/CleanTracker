@@ -4,9 +4,9 @@ namespace Domain.Interfaces;
 
 public interface IAssignable
 {
-    public TrackerId? AssignedTo { get; set; }
-    public IssuePoints? Points { get; set; }
+    public TrackerId? AssignedTo { get; }
+    public IssuePoints? Points { get; }
     public void Assign(IUser assignee);
-    public void UpdatePoints(IssuePoints points);
+    public void UpdatePoints(IssuePoints? points);
 
 }

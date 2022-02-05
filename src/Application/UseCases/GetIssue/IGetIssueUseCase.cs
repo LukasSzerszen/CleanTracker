@@ -5,6 +5,6 @@ namespace Application.UseCases.GetIssue;
 
 public interface IGetIssueUseCase
 {
-    Task Execute(Guid issueId);
-    void SetOutputPort(IOutputPort outputPort);
+    Task Execute(GetIssueInput issueId);
+    IGetIssueOutputPort OutputPort { get; set; }
 }

@@ -1,5 +1,5 @@
 ﻿using Application.UseCases.GetIssue;
-using Domain.ValueObjects;
+using Domain;
 using System;
 using Xunit;
 
@@ -15,11 +15,12 @@ public sealed class GetIssueTests : IClassFixture<StandardFixture>
     public async void GetIssueUseCase_Returns_Issue_From_Repsitory()
     {
         GetIssuePresenter presenter = new();
-        GetIssueUseCase sut = new(_fixture.IssueRepositoryFake);
-        sut.SetOutputPort(presenter);
+        Notification notification = new();
+        GetIssueUseCase sut = new(_fixture.IssueRepositoryFake, notification);
+        sut.OutputPort = presenter;
         var issueId = new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890");
-
-        await sut.Execute(issueId);
+        GetIssueInput input = new(issueId);
+        await sut.Execute(input);
 
         Assert.NotNull(presenter.Issue);
     }

@@ -2,9 +2,9 @@
 
 namespace Application.UseCases.GetIssue;
 
-public interface IOutputPort
+public interface IGetIssueOutputPort
 {
-    void Invalid();
+    void BadRequest();
 
     void Ok(Issue issue);
 

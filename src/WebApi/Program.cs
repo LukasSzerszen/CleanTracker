@@ -29,13 +29,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     var provider = app.Services.GetService<IApiVersionDescriptionProvider>();
     app.UseSwaggerUI(options =>
-    {
-        options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
-        foreach (var description in provider.ApiVersionDescriptions)
-            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+        {
+            options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+            foreach (var description in provider.ApiVersionDescriptions)
+                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
 
-    }
-        );
+        }
+    );
 }
 app.UseRouting();
 app.UseAuthorization();

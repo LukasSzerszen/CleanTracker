@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using WebApi.Modules.Common.FeatureFlags;
+using WebApi.Modules.Common.Swagger;
 using WebApi.Modules.SqlServerExtensions;
 using WebApi.Modules.UseCaseExtensions;
 
@@ -15,6 +17,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddFeatureFlags(builder.Configuration)
+    .AddVersionedSwagger()
     .AddUseCases()
     .AddSQLServer(builder.Configuration);
 
@@ -24,7 +27,15 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    var provider = app.Services.GetService<IApiVersionDescriptionProvider>();
+    app.UseSwaggerUI(options =>
+    {
+        options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+        foreach (var description in provider.ApiVersionDescriptions)
+            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+
+    }
+        );
 }
 app.UseRouting();
 app.UseAuthorization();

@@ -15,21 +15,21 @@ public sealed class CustomControllerFeatureProvider : IApplicationFeatureProvide
 
     public void PopulateFeature(IEnumerable<ApplicationPart> parts, ControllerFeature feature)
     {
-        if(feature == null) throw new ArgumentNullException(nameof(feature));
+        if (feature == null) throw new ArgumentNullException(nameof(feature));
 
-        for(var i = feature.Controllers.Count - 1; i >= 0; i--)
+        for (var i = feature.Controllers.Count - 1; i >= 0; i--)
         {
             var controller = feature.Controllers[i].AsType();
-            foreach(var customAttribute in controller.CustomAttributes)
+            foreach (var customAttribute in controller.CustomAttributes)
             {
-                if(customAttribute.AttributeType.FullName == typeof(FeatureGateAttribute).FullName)
+                if (customAttribute.AttributeType.FullName == typeof(FeatureGateAttribute).FullName)
                 {
                     var constructorArgument = customAttribute.ConstructorArguments.First();
                     foreach (var argumentValue in constructorArgument.Value as IEnumerable)
                     {
                         var typedArgument = (CustomAttributeTypedArgument)argumentValue!;
-                        string typedArgumentValue = (string) typedArgument.Value!;
-                        Enum.TryParse(typedArgumentValue, out Features type);
+                        int typedArgumentValue = (int)typedArgument.Value!;
+                        Features type = (Features)typedArgumentValue;
                         bool isFeatureEnabled = this._featureManager
                             .IsEnabledAsync(type.ToString())
                             .ConfigureAwait(false)
@@ -40,8 +40,8 @@ public sealed class CustomControllerFeatureProvider : IApplicationFeatureProvide
                             feature.Controllers.RemoveAt(i);
                         }
                     }
-                    
-                  
+
+
                 }
             }
         }

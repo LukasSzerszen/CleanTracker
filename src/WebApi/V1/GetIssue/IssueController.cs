@@ -8,7 +8,7 @@ using WebApi.V1.GetIssue;
 
 namespace WebApi.Controllers;
 
-[FeatureGate("GetIssueUseCase")]
+[FeatureGate(Features.GetIssueUseCase)]
 [ApiVersion("1.0")]
 [Route("api/v1/[controller]")]
 [ApiController]

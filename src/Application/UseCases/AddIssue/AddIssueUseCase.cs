@@ -11,26 +11,26 @@ namespace Application.UseCases.AddIssueUseCase;
 public class AddIssueUseCase : IAddIssueUseCase
 {
     private readonly IIssueRepository _issueRepository;
-    private IOutputPort _outputPort;
+    private readonly Notification _notification;
+    public IAddIssueOutputPort OutputPort { get; set; }
 
-    public AddIssueUseCase(IIssueRepository issueRepository)
+    public AddIssueUseCase(IIssueRepository issueRepository, Notification notification)
     {
+        _notification = notification;
         _issueRepository = issueRepository;
-        _outputPort = new AddIssuePresenter();
+        OutputPort = new AddIssuePresenter();
     }
-    public async Task Execute(string issuetitle) => await AddIssue(issuetitle);
+    public async Task Execute(AddIssueInput input) => await AddIssue(input);
 
-    private async Task AddIssue(string issueTitle)
+    private async Task AddIssue(AddIssueInput input)
     {
-        var title = IssueTitle.Build(issueTitle).Value;
-        var id = TrackerId.Build(Guid.NewGuid()).Value;
-        Issue issue = IssueBuilderFactory.Create(id, title).Build();
+        Issue issue = IssueBuilderFactory.Create(input.IssueId, input.Title)
+                .WithDescription(input.Description)
+                .WithPoints(input.Points)
+                .WithAsignee(input.AssignedTo)
+                .WithStatus(input.Status)
+                .Build();
         await _issueRepository.Add(issue).ConfigureAwait(false);
-        _outputPort?.Ok(issue);
-    }
-
-    public void SetOutputPort(IOutputPort outputPort)
-    {
-        _outputPort = outputPort;
+        OutputPort?.Ok(issue);
     }
 }

@@ -15,6 +15,7 @@ public record struct IssuePoints
     public static Result<IssuePoints> Build(int points)
     {
         var result = new Result<IssuePoints>();
+        result.Notifcation = new();
         if(points <= 0)
         {
             result.Notifcation.Add(nameof(points), "must be larger than zero");

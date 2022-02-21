@@ -18,11 +18,9 @@ public sealed class AddIssueTests : IClassFixture<CustomWebApplicationFactory>
     public async Task AddIssueReturnsOk()
     {
         HttpClient client = _fixture.CreateClient();
-        var id = new Guid("22a69812-2d66-422f-90b8-d5a969b9f081");
         Uri requestUri = new($"api/v1/Issue/addissue", UriKind.Relative);
         var request = new AddIssueRequest()
         {
-            IssueId = id,
             Title = "new issue title",
             Description = "issue description"
         };

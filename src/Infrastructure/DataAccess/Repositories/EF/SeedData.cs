@@ -35,7 +35,7 @@ public sealed class SeedData
 
         Issue issue1 = IssueBuilderFactory.Create(IssueId1, IssueTitle1).WithPoints(Points1).WithDescription(Description1).Build();
 
-        Issue issue2 = IssueBuilderFactory.Create(IssueId2, IssueTitle2).WithPoints(Points2).WithDescription(Description2).WithAsignee(user1).Build();
+        Issue issue2 = IssueBuilderFactory.Create(IssueId2, IssueTitle2).WithPoints(Points2).WithDescription(Description2).WithAsignee(user1.UserId).Build();
 
         builder.Entity<Issue>().HasData(issue1, issue2);
     }

@@ -1,5 +1,6 @@
 ﻿using Application.UseCases.AddIssue;
 using Application.UseCases.AddIssueUseCase;
+using Domain;
 using Xunit;
 
 namespace UnitTests.AddIssue;
@@ -14,11 +15,13 @@ public sealed class AddIssueTests : IClassFixture<StandardFixture>
     public async void AddIssueUseCase_Adds_Issue_To_Collection()
     {
         AddIssuePresenter presenter = new();
-        AddIssueUseCase sut = new(_fixture.IssueRepositoryFake);
-        sut.SetOutputPort(presenter);
+        Notification notification = new();
+        AddIssueUseCase sut = new(_fixture.IssueRepositoryFake, notification);
+        sut.OutputPort = presenter;
         string issueTitle = "new issue";
+        AddIssueInput input = new(issueTitle, null, null, null, null);
 
-        await sut.Execute(issueTitle);
+        await sut.Execute(input);
 
         Assert.NotNull(presenter.Issue);
     }

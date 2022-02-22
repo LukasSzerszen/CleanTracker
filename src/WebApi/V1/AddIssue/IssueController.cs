@@ -22,7 +22,14 @@ public  class IssueController:ControllerBase
     {
         useCase.OutputPort = presenter;
 
-        var input = new AddIssueInput(request.Title,request.Description, request.Points, request.AssignedTo, request.Status);
+        var input = new AddIssueInput()
+        {
+            Title = request.Title,
+            Description = request.Description,
+            Points = request.Points,
+            AssignedTo = request.AssignedTo,
+            Status = request.Status,
+        };
 
         await useCase.Execute(input);
 

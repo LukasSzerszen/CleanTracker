@@ -19,7 +19,7 @@ public sealed class Notification
     }
 
     public bool isValid => this._errorMessages.Count == 0;
-    public bool isInvalid => this._errorMessages.Count > 1;
+    public bool isInvalid => this._errorMessages.Count >= 1;
 
     public  void Add(string key, string message)
     {

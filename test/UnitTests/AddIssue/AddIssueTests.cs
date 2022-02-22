@@ -19,7 +19,14 @@ public sealed class AddIssueTests : IClassFixture<StandardFixture>
         AddIssueUseCase sut = new(_fixture.IssueRepositoryFake, notification);
         sut.OutputPort = presenter;
         string issueTitle = "new issue";
-        AddIssueInput input = new(issueTitle, null, null, null, null);
+        AddIssueInput input = new()
+        {
+            Title = issueTitle,
+            Description = null,
+            AssignedTo = null,
+            Points = null,
+            Status = null,
+        };
 
         await sut.Execute(input);
 

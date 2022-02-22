@@ -15,6 +15,7 @@ public record struct IssueDescription
     public static Result<IssueDescription> Build(string description)
     {
         var result = new Result<IssueDescription>();
+        result.Notifcation = new();
         if (description.Length > 80)
         {
             result.Notifcation.Add(nameof(description), "must be smaller than 80 characters");

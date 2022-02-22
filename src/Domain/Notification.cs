@@ -19,7 +19,8 @@ public sealed class Notification
     }
 
     public bool isValid => this._errorMessages.Count == 0;
-    public bool isInvalid => this._errorMessages.Count > 1;
+    public bool isInvalid => this._errorMessages.Count >= 1;
+
     public  void Add(string key, string message)
     {
         if (!this._errorMessages.ContainsKey(key))
@@ -28,5 +29,13 @@ public sealed class Notification
         }
 
         this._errorMessages[key].Add(message);
+    }
+
+    public void Add(Notification notification)
+    {
+        foreach(var kvp in notification.ModelState)
+        {
+            _errorMessages.Add(kvp.Key, kvp.Value);
+        }
     }
 }

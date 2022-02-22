@@ -1,5 +1,4 @@
-﻿using System;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Domain.ValueObjects;
 
 namespace Domain;
@@ -39,8 +38,8 @@ public class Issue : IIssue, IAssignable
         private Issue Issue;
         public IssueBuilder(TrackerId trackerId, IssueTitle title)
         {
-            this.Issue= new Issue(trackerId, title);
-           
+            this.Issue = new Issue(trackerId, title);
+
         }
 
         public Issue Build()
@@ -50,21 +49,27 @@ public class Issue : IIssue, IAssignable
             return result;
         }
 
-        public IIssueBuilder WithAsignee(IUser user)
+        public IIssueBuilder WithAsignee(TrackerId? user)
         {
-            Issue.AssignedTo = user.UserId;
+            Issue.AssignedTo = user;
             return this;
         }
 
-        public IIssueBuilder WithDescription(IssueDescription description)
+        public IIssueBuilder WithDescription(IssueDescription? description)
         {
             Issue.Description = description;
             return this;
         }
 
-        public IIssueBuilder WithPoints(IssuePoints points)
+        public IIssueBuilder WithPoints(IssuePoints? points)
         {
             Issue.Points = points;
+            return this;
+        }
+
+        public IIssueBuilder WithStatus(IssueProgressStatus? status)
+        {
+            Issue.Status = status;
             return this;
         }
     }

@@ -30,7 +30,6 @@ namespace Application.UseCases.GetIssue
             var trackerId = TrackerId.Build(input.IssueId).Value;
             var issue = await _issueRepository.Get(trackerId);
             OutputPort?.Ok(issue);
-
         }
     }
 }

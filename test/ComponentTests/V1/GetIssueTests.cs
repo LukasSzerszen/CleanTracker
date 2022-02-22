@@ -15,7 +15,7 @@ public sealed class GetIssueTests : IClassFixture<CustomWebApplicationFactory>
     public GetIssueTests(CustomWebApplicationFactory fixture) => this._fixture = fixture;
 
     [Fact]
-    public async Task AddIssueReturnsOk()
+    public async Task GetIssueReturnsOk()
     {
         HttpClient client = this._fixture.CreateClient();
         var id = new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890");

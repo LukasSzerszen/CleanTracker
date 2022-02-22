@@ -2,11 +2,11 @@
 
 namespace Application.UseCases.AddIssue;
 
-public interface IOutputPort
+public interface IAddIssueOutputPort
 {
-    void Invalid();
+    void BadRequest();
 
-    void Ok(Issue issue);
+    void Ok(Issue issueId);
 
     void NotFound();
 

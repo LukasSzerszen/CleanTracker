@@ -1,6 +1,7 @@
-﻿using Application.UseCases.GetIssue;
+﻿
+using Application.UseCases.AddIssueUseCase;
+using Application.UseCases.GetIssue;
 using Domain;
-using WebApi.V1.GetIssue;
 
 namespace WebApi.Modules.UseCaseExtensions;
 
@@ -10,7 +11,9 @@ public static class UseCaseExtensions
     {
         services.AddScoped<Notification, Notification>();
         services.AddScoped<IGetIssueUseCase, GetIssueUseCase>();
-        services.AddScoped<Presenter, Presenter>();
+        services.AddScoped<V1.GetIssue.Presenter>();
+        services.AddScoped<IAddIssueUseCase, AddIssueUseCase>();
+        services.AddScoped<V1.AddIssue.Presenter>();
 
         return services;
     }

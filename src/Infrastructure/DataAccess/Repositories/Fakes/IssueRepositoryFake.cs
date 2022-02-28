@@ -55,4 +55,9 @@ public class IssueRepositoryFake : IIssueRepository
 
         await Task.CompletedTask.ConfigureAwait(false);
     }
+
+    public Task Update(UpdateIssueInput input)
+    {
+        throw new System.NotImplementedException();
+    }
 }

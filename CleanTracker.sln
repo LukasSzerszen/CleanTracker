@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "test\In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "src\WebApi\WebApi.csproj", "{A4083389-5D46-4C26-8ECF-AF46D1903CE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentTests", "test\ComponentTests\ComponentTests.csproj", "{DE0B9A4C-1E60-4339-BDC3-BCA61A37FBE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentTests", "test\ComponentTests\ComponentTests.csproj", "{DE0B9A4C-1E60-4339-BDC3-BCA61A37FBE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

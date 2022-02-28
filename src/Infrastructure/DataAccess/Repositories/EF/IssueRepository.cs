@@ -28,7 +28,7 @@ public class IssueRepository : IIssueRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Issue> Get(TrackerId issueId)
+    public async Task<Issue?> Get(TrackerId issueId)
     {
         return await _context.Issues
             .FindAsync(issueId);
@@ -45,6 +45,22 @@ public class IssueRepository : IIssueRepository
         issueToUpdate.UpdatePoints(issue.Points);
         issueToUpdate.UpdateProgress(issue.Status);
         issueToUpdate.UpdateDescription(issue.Description);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task Update(UpdateIssueInput input)
+    {
+        var issue = await _context.FindAsync<Issue>(input.IssueId);
+
+        if(issue == null)
+        {
+            return;
+        }
+
+        issue.UpdatePoints(input.Points);
+        issue.UpdateProgress(input.Status);
+        issue.UpdateDescription(input.Description);
+        
         await _context.SaveChangesAsync();
     }
 }

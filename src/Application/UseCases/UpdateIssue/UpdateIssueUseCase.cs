@@ -58,7 +58,7 @@ public class UpdateIssueUseCase : IUpdateIssueUseCase
 
             try
             {
-                Enum.TryParse<IssueProgressStatus>(input.Status, out IssueProgressStatus statusResult);
+                Enum.TryParse(input.Status, out IssueProgressStatus statusResult);
                 updateIssueInput.Status = statusResult;
                 
             }

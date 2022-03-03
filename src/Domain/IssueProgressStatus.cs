@@ -7,5 +7,4 @@ public enum IssueProgressStatus
     ReadyForTest = 3,
     ReadyForRelease = 4,
     Done = 5
-
 }

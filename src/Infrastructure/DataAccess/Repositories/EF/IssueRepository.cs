@@ -56,11 +56,15 @@ public class IssueRepository : IIssueRepository
         {
             return;
         }
+        if(input.Title != null)
+        {
+            issue.UpdateTitle(input.Title.Value);
+        }
 
         issue.UpdatePoints(input.Points);
         issue.UpdateProgress(input.Status);
         issue.UpdateDescription(input.Description);
-        
+        issue.UpdateProgress(input.Status);
         await _context.SaveChangesAsync();
     }
 }

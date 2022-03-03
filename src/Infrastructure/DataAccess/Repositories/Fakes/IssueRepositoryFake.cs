@@ -56,8 +56,20 @@ public class IssueRepositoryFake : IIssueRepository
         await Task.CompletedTask.ConfigureAwait(false);
     }
 
-    public Task Update(UpdateIssueInput input)
+    public async Task Update(UpdateIssueInput input)
     {
-        throw new System.NotImplementedException();
+        Issue? issue = _context.Issues.Where(x => x.IssueId == input.IssueId).FirstOrDefault();
+        if(issue == null)
+        {
+            await Task.CompletedTask.ConfigureAwait(false);
+        }
+        if(input.Title != null)
+        {
+            issue!.UpdateTitle(input.Title.Value);
+        }
+
+        issue!.UpdateDescription(input.Description);
+        issue.UpdatePoints(input.Points);
+        issue.UpdateProgress(input.Status);
     }
 }

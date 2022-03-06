@@ -4,11 +4,8 @@ using Application.UseCases.UpdateIssue;
 using Domain;
 using Domain.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+using static Domain.Issue;
 
 namespace UnitTests.UpdateIssue;
 
@@ -19,32 +16,18 @@ public sealed class UpdateIssueTests : IClassFixture<StandardFixture>
     [Fact]
     public async void UpdateIssueUseCase_Updates_Issue()
     {
-        AddIssuePresenter addIssuePresenter = new();
         Notification notification = new();
-        AddIssueUseCase addIssueUseCase = new(notification, _fixture.IssueRepositoryFake);
-        addIssueUseCase.OutputPort = addIssuePresenter;
         UpdateIssuePresenter presenter = new();
         UpdateIssueUseCase sut = new(notification, _fixture.IssueRepositoryFake);
         sut.OutputPort = presenter;
-        Guid id = Guid.NewGuid();
         string issueTitle = "Update Issue";
         string description = "new description";
         string status = "ReadyForRelease";
         int points = 8;
-
-
-        AddIssueInput addIssueInput = new()
-        {
-            Title = issueTitle,
-            Description = null,
-            AssignedTo = null,
-            Points = null,
-            Status = null,
-        };
-
-        await addIssueUseCase.Execute(addIssueInput);
-
-        TrackerId issueId = addIssuePresenter.Issue.IssueId;
+        TrackerId issueId = TrackerId.Build(Guid.NewGuid()).Value;
+        IssueTitle title = IssueTitle.Build(issueTitle).Value;
+        Issue issue = IssueBuilderFactory.Create(issueId, title).Build();
+        await _fixture.IssueRepositoryFake.Add(issue);
 
         UpdateIssueRequest request = new()
         {
@@ -56,7 +39,7 @@ public sealed class UpdateIssueTests : IClassFixture<StandardFixture>
 
         await sut.Execute(request);
 
-        Issue issue = await _fixture.IssueRepositoryFake.Get(issueId);
+        issue = await _fixture.IssueRepositoryFake.Get(issueId);
 
         Assert.NotNull(issue);
         Assert.Equal(description, issue.Description.Value.Description);

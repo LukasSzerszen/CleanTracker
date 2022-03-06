@@ -40,7 +40,6 @@ public class Issue : IIssue, IAssignable
         public IssueBuilder(TrackerId trackerId, IssueTitle title)
         {
             this.Issue = new Issue(trackerId, title);
-
         }
 
         public Issue Build()

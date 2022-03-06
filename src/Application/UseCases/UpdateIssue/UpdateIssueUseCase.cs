@@ -24,6 +24,7 @@ public class UpdateIssueUseCase : IUpdateIssueUseCase
     {
         UpdateIssueInput updateIssueInput = new UpdateIssueInput();
         TrackerId issueId = TrackerId.Build(input.IssueId).Value;
+        updateIssueInput.IssueId = issueId;
         Result<IssueTitle>? issueTitle = null;
         Result<IssueDescription>? issueDescription = null;
         Result<IssuePoints>? issuePoints = null;

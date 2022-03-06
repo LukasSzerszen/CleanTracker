@@ -47,13 +47,33 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
     public async void Update_Issue_Does_Not_Throw_Exception()
     {
         IssueRepository issueRepository = new IssueRepository(_fixture.Context);
-        var updatedIssue = IssueBuilderFactory.Create(SeedData.IssueId2, SeedData.IssueTitle2).WithPoints(SeedData.Points3).WithDescription(SeedData.Description3).Build();
-        var ex = await Record.ExceptionAsync(async () => await issueRepository.Update(updatedIssue));
-        var issue = await issueRepository.Get(SeedData.IssueId2);
+
+        string issueTitle = "Update Issue";
+        string description = "new description";
+        int points = 8;
+        TrackerId issueId = TrackerId.Build(Guid.NewGuid()).Value;
+        IssueTitle title = IssueTitle.Build(issueTitle).Value;
+        IssueDescription issueDescription = IssueDescription.Build(description).Value;
+        IssueProgressStatus progressStatus = IssueProgressStatus.ReadyForRelease;
+        IssuePoints issuePoints = IssuePoints.Build(points).Value;
+        Issue issue = IssueBuilderFactory.Create(issueId, title).Build();
+
+        await issueRepository.Add(issue);
+
+        UpdateIssueInput updateIssueInput = new()
+        {
+            IssueId = issueId,
+            Description = issueDescription,
+            Points = issuePoints,
+            Status = progressStatus,
+        };
+        Exception ex = await Record.ExceptionAsync(async () => await issueRepository.Update(updateIssueInput));
+
+        Issue updatedIssue = await issueRepository.Get(issueId);
 
         Assert.Null(ex);
-        Assert.Equal(updatedIssue.Points, issue.Points);
-        Assert.Equal(updatedIssue.Status, issue.Status);
-        Assert.Equal(updatedIssue.Description, issue.Description);
+        Assert.Equal(issuePoints, updatedIssue!.Points);
+        Assert.Equal(progressStatus,updatedIssue.Status);
+        Assert.Equal(issueDescription,updatedIssue.Description);
     }
 }

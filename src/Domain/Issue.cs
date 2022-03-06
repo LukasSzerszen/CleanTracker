@@ -5,10 +5,9 @@ namespace Domain;
 
 public class Issue : IIssue, IAssignable
 {
-
     public TrackerId IssueId { get; }
 
-    public IssueTitle Title { get; }
+    public IssueTitle Title { get; private set; }
 
     public IssueDescription? Description { get; private set; }
 
@@ -29,9 +28,11 @@ public class Issue : IIssue, IAssignable
 
     public void UpdateDescription(IssueDescription? description) => Description = description;
 
-    public void Assign(IUser assignee) => AssignedTo = assignee.UserId;
+    public void Assign(TrackerId assignee) => AssignedTo = assignee;
 
     public void UpdateProgress(IssueProgressStatus? status) => Status = status;
+
+    public void UpdateTitle(IssueTitle title) => Title = title;
 
     public class IssueBuilder : IIssueBuilder
     {
@@ -39,7 +40,6 @@ public class Issue : IIssue, IAssignable
         public IssueBuilder(TrackerId trackerId, IssueTitle title)
         {
             this.Issue = new Issue(trackerId, title);
-
         }
 
         public Issue Build()

@@ -14,7 +14,7 @@ public class AddIssueUseCase : IAddIssueUseCase
     private readonly Notification _notification;
     public IAddIssueOutputPort OutputPort { get; set; }
 
-    public AddIssueUseCase(IIssueRepository issueRepository, Notification notification)
+    public AddIssueUseCase(Notification notification, IIssueRepository issueRepository)
     {
         _notification = notification;
         _issueRepository = issueRepository;

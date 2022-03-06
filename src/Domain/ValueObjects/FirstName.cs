@@ -15,7 +15,6 @@ public record struct FirstName
     public static Result<FirstName> Build(string name)
     {
         var result = new Result<FirstName>();
-        result.Notifcation = new();
         if(name.Length <= 0)
         {
             result.Notifcation.Add(nameof(name), "can't be empty");

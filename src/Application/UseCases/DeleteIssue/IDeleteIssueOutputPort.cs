@@ -1,8 +1,8 @@
 ﻿namespace Application.UseCases.DeleteIssue;
 
-public interface IOutputPort
+public interface IDeleteIssueOutputPort
 {
-    void Invalid();
+    void BadRequest();
 
     void Ok();
 

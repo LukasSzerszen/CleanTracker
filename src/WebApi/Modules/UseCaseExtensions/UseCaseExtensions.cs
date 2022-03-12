@@ -1,5 +1,6 @@
 ﻿
 using Application.UseCases.AddIssueUseCase;
+using Application.UseCases.DeleteIssue;
 using Application.UseCases.GetIssue;
 using Application.UseCases.UpdateIssue;
 using Domain;
@@ -17,6 +18,8 @@ public static class UseCaseExtensions
         services.AddScoped<V1.AddIssue.Presenter>();
         services.AddScoped<IUpdateIssueUseCase, UpdateIssueUseCase>();
         services.AddScoped<V1.UpdateIssue.Presenter>();
+        services.AddScoped<IDeleteIssueUseCase, DeleteIssueUseCase>();
+        services.AddScoped<V1.DeleteIssue.Presenter>();
 
 
         return services;

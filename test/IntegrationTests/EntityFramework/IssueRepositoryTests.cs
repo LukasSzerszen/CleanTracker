@@ -60,14 +60,7 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
 
         await issueRepository.Add(issue);
 
-        UpdateIssueInput updateIssueInput = new()
-        {
-            IssueId = issueId,
-            Description = issueDescription,
-            Points = issuePoints,
-            Status = progressStatus,
-        };
-        Exception ex = await Record.ExceptionAsync(async () => await issueRepository.Update(updateIssueInput));
+        Exception ex = await Record.ExceptionAsync(async () => await issueRepository.Update(issueId, null, issueDescription, issuePoints, null, progressStatus));
 
         Issue updatedIssue = await issueRepository.Get(issueId);
 

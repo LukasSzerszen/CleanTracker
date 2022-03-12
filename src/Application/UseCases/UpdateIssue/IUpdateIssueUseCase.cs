@@ -2,8 +2,8 @@
 
 namespace Application.UseCases.UpdateIssue;
 
-internal interface IUpdateIssueUseCase
+public interface IUpdateIssueUseCase
 {
-    Task Execute(UpdateIssueRequest input);
+    Task Execute(UpdateIssueInput input);
     IUpdateIssueOutputPort OutputPort { get; set; }
 }

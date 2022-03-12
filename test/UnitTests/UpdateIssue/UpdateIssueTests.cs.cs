@@ -29,7 +29,7 @@ public sealed class UpdateIssueTests : IClassFixture<StandardFixture>
         Issue issue = IssueBuilderFactory.Create(issueId, title).Build();
         await _fixture.IssueRepositoryFake.Add(issue);
 
-        UpdateIssueRequest request = new()
+        UpdateIssueInput request = new()
         {
             IssueId = issueId.Id,
             Description = description,

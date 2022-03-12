@@ -56,20 +56,20 @@ public class IssueRepositoryFake : IIssueRepository
         await Task.CompletedTask.ConfigureAwait(false);
     }
 
-    public async Task Update(UpdateIssueInput input)
+    public async Task Update(TrackerId issueId, IssueTitle? title, IssueDescription? description, IssuePoints? points, TrackerId? assignedTo, IssueProgressStatus? status)
     {
-        Issue? issue = _context.Issues.Where(x => x.IssueId == input.IssueId).FirstOrDefault();
-        if(issue == null)
+        Issue? issue = _context.Issues.Where(x => x.IssueId == issueId).FirstOrDefault();
+        if (issue == null)
         {
             await Task.CompletedTask.ConfigureAwait(false);
         }
-        if(input.Title != null)
+        if (title != null)
         {
-            issue!.UpdateTitle(input.Title.Value);
+            issue!.UpdateTitle(title.Value);
         }
 
-        issue!.UpdateDescription(input.Description);
-        issue.UpdatePoints(input.Points);
-        issue.UpdateProgress(input.Status);
+        issue!.UpdateDescription(description);
+        issue.UpdatePoints(points);
+        issue.UpdateProgress(status);
     }
 }

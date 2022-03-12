@@ -22,7 +22,12 @@ public sealed class DeleteIssueTests : IClassFixture<StandardFixture>
 
         var issue = _fixture.IssueRepositoryFake.Get(trackerId);
         Assert.NotNull(issue.Result);
-        await sut.Execute(issueId);
+
+        DeleteIssueInput input = new()
+        {
+            IssueId = issueId
+        };
+        await sut.Execute(input);
 
         issue = _fixture.IssueRepositoryFake.Get(trackerId);
 
@@ -39,8 +44,12 @@ public sealed class DeleteIssueTests : IClassFixture<StandardFixture>
         var issueId1 = TrackerId.Build(new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890")).Value;
         var issueId2 = TrackerId.Build(new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298")).Value;
 
+        DeleteIssueInput input = new()
+        {
+            IssueId = notPresentId
+        };
 
-        await sut.Execute(notPresentId);
+        await sut.Execute(input);
         var issue1 = _fixture.IssueRepositoryFake.Get(issueId1);
         var issue2 = _fixture.IssueRepositoryFake.Get(issueId2);
         Assert.NotNull(issue1.Result); 

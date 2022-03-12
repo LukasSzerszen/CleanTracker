@@ -17,10 +17,12 @@ public class IssueTrackerContextFake
         var issueId1 = TrackerId.Build(new Guid("31ed9c62-c367-42ed-aa63-2e68e4934890")).Value;
         var issueId2 = TrackerId.Build(new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298")).Value;
         var issueId3 = TrackerId.Build(new Guid("cb333ef9-9986-45ef-8872-e3429afb6d3a")).Value;
+        var issueId4 = TrackerId.Build(new Guid("9d64104d-e211-44a6-8331-c1134937cd69")).Value;
 
         var title1 = IssueTitle.Build("issue1").Value;
         var title2 = IssueTitle.Build("issue2").Value;
         var title3 = IssueTitle.Build("issue3").Value;
+        var title4 = IssueTitle.Build("issue4").Value;
 
         var description1 = IssueDescription.Build("description1").Value;
         var description2 = IssueDescription.Build("description2").Value;
@@ -40,10 +42,12 @@ public class IssueTrackerContextFake
 
         Issue issue3 = IssueBuilderFactory.Create(issueId3, title3).Build();
 
+        Issue issue4 = IssueBuilderFactory.Create(issueId4, title4).Build();
 
         Issues.Add(issue1);
         Issues.Add(issue2);
         Issues.Add(issue3);
+        Issues.Add(issue4);
 
         issue2.Assign(user1.UserId);
 

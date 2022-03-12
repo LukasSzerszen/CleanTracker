@@ -16,7 +16,6 @@ public class UpdateIssueUseCase : IUpdateIssueUseCase
         _notification = notification;
         _issueRepository = issueRepository;
         OutputPort = new UpdateIssuePresenter();
-
     }
 
     public async Task Execute(UpdateIssueInput input)

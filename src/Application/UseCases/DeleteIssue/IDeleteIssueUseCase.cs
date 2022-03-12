@@ -5,6 +5,6 @@ namespace Application.UseCases.DeleteIssue;
 
 public interface IDeleteIssueUseCase
 {
-    Task Execute(Guid issueId);
-    void SetOutputPort(IOutputPort outputPort);
+    Task Execute(DeleteIssueInput issueId);
+    IDeleteIssueOutputPort OutputPort { get; set; }
 }

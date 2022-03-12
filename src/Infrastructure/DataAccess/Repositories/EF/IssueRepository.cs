@@ -33,23 +33,29 @@ public class IssueRepository : IIssueRepository
         return await _context.Issues
             .FindAsync(issueId);
     }
-    public async Task Update(UpdateIssueInput input)
-    {
-        Issue? issue = await _context.FindAsync<Issue>(input.IssueId);
 
-        if(issue == null)
+    public async Task Update(TrackerId issueId, 
+        IssueTitle? title, 
+        IssueDescription? description, 
+        IssuePoints? points, 
+        TrackerId? assignedTo, 
+        IssueProgressStatus? status)
+    {
+        Issue? issue = await _context.FindAsync<Issue>(issueId);
+
+        if (issue == null)
         {
             return;
         }
         _context.Attach(issue);
-        if(input.Title != null)
+        if (title != null)
         {
-            issue.UpdateTitle(input.Title.Value);
+            issue.UpdateTitle(title.Value);
             _context.Entry(issue).Property(i => i.Title).IsModified = true;
         }
-        issue.UpdatePoints(input.Points);
-        issue.UpdateProgress(input.Status);
-        issue.UpdateDescription(input.Description);
+        issue.UpdatePoints(points);
+        issue.UpdateProgress(status);
+        issue.UpdateDescription(description);
         _context.Entry(issue).Property(i => i.Points).IsModified = true;
         _context.Entry(issue).Property(i => i.Status).IsModified = true;
         _context.Entry(issue).Property(i => i.Description).IsModified = true;

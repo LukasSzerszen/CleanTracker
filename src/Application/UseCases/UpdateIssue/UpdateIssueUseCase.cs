@@ -3,7 +3,6 @@ using Domain.Interfaces;
 using Domain.ValueObjects;
 using System;
 using System.Threading.Tasks;
-using static Domain.Issue;
 
 namespace Application.UseCases.UpdateIssue;
 
@@ -20,50 +19,47 @@ public class UpdateIssueUseCase : IUpdateIssueUseCase
 
     }
 
-    public async Task Execute(UpdateIssueRequest input)
+    public async Task Execute(UpdateIssueInput input)
     {
-        UpdateIssueInput updateIssueInput = new UpdateIssueInput();
         TrackerId issueId = TrackerId.Build(input.IssueId).Value;
-        updateIssueInput.IssueId = issueId;
-        Result<IssueTitle>? issueTitle = null;
-        Result<IssueDescription>? issueDescription = null;
-        Result<IssuePoints>? issuePoints = null;
-        Result<TrackerId>? assignedTo = null;
+        IssueTitle? issueTitle = null;
+        IssueDescription? issueDescription = null;
+        IssuePoints? issuePoints = null;
+        TrackerId? assignedTo = null;
+        IssueProgressStatus? issueProgressStatus = null;
         if (input.Title != null)
         {
-            issueTitle = IssueTitle.Build(input.Title);
-            _notification.Add(issueTitle.Notifcation);
-            updateIssueInput.Title = issueTitle.Value;
-            
-        }
-        if(input.Description != null)
-        {
-            issueDescription = IssueDescription.Build(input.Description);
-            _notification.Add(issueDescription.Notifcation);
-            updateIssueInput.Description = issueDescription.Value;
-        }
-        if(input.Points != null)
-        {
-            issuePoints = IssuePoints.Build(input.Points.Value);
-            _notification.Add(issuePoints.Notifcation);
-            updateIssueInput.Points = issuePoints.Value;
-        }
-        if(input.AssignedTo != null)
-        {
-            assignedTo = TrackerId.Build(input.AssignedTo.Value);
-            _notification.Add(assignedTo.Notifcation);
-            updateIssueInput.AssignedTo = assignedTo.Value;
-        }
-        if(input.Status != null)
-        {
+             Result<IssueTitle> result = IssueTitle.Build(input.Title);
+            _notification.Add(result.Notifcation);
+            issueTitle = result.Value;
 
+        }
+        if (input.Description != null)
+        {
+            Result<IssueDescription> result = IssueDescription.Build(input.Description);
+            _notification.Add(result.Notifcation);
+            issueDescription = result.Value;
+        }
+        if (input.Points != null)
+        {
+             Result<IssuePoints> result = IssuePoints.Build(input.Points.Value);
+            _notification.Add(result.Notifcation);
+            issuePoints = result.Value;
+        }
+        if (input.AssignedTo != null)
+        {
+            Result<TrackerId> result = TrackerId.Build(input.AssignedTo.Value);
+            _notification.Add(result.Notifcation);
+            assignedTo = result.Value;
+        }
+        if (input.Status != null)
+        {
             try
             {
                 Enum.TryParse(input.Status, out IssueProgressStatus statusResult);
-                updateIssueInput.Status = statusResult;
-                
+                issueProgressStatus = statusResult;
             }
-            catch(ArgumentException e)
+            catch (ArgumentException e)
             {
                 _notification.Add(nameof(input.Status), $"Illegal status: {e.Message}");
             }
@@ -74,7 +70,7 @@ public class UpdateIssueUseCase : IUpdateIssueUseCase
             OutputPort.BadRequest();
         }
 
-        await _issueRepository.Update(updateIssueInput);
+        await _issueRepository.Update(issueId, issueTitle,issueDescription, issuePoints, assignedTo, issueProgressStatus);
 
         OutputPort.Ok();
     }

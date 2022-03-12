@@ -17,7 +17,7 @@ public class Issue : IIssue, IAssignable
 
     public IssueProgressStatus? Status { get; private set; }
 
-    public Issue(TrackerId issueId, IssueTitle title)
+    private Issue(TrackerId issueId, IssueTitle title)
     {
         IssueId = issueId;
         Title = title;

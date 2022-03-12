@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.UseCases.UpdateIssue;
+namespace WebApi.V1.UpdateIssue;
 
 public class UpdateIssueRequest
 {

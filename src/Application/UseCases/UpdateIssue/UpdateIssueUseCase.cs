@@ -54,12 +54,10 @@ public class UpdateIssueUseCase : IUpdateIssueUseCase
         }
         if (input.Status != null)
         {
-
             try
             {
                 Enum.TryParse(input.Status, out IssueProgressStatus statusResult);
                 issueProgressStatus = statusResult;
-
             }
             catch (ArgumentException e)
             {

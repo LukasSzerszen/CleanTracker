@@ -33,7 +33,6 @@ if (app.Environment.IsDevelopment())
             options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
             foreach (var description in provider.ApiVersionDescriptions)
                 options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-
         }
     );
 }

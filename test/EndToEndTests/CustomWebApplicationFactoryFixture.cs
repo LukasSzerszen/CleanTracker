@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ComponentTests;
+namespace EndToEndTests;
 
 public sealed class CustomWebApplicationFactoryFixture : IDisposable
 {

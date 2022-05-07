@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.ValueObjects;
+using System.Collections.Generic;
 
 namespace Domain;
 
@@ -11,12 +12,7 @@ public class Sprint : ISprint
 
     public TrackerDate EndDate { get; set; }
 
-    public IssueCollection Issues { get; } = new IssueCollection();
-
-    public Sprint(TrackerId id)
-    {
-        Id = id;
-    }
+    public List<Issue> Issues { get; } = new();
     public Sprint(TrackerId id, TrackerDate startDate, TrackerDate endDate)
     {
         Id = id;

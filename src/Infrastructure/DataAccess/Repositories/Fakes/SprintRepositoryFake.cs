@@ -39,10 +39,6 @@ namespace Infrastructure.Repositories
         {
             Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
 
-            if (sprint == null)
-            {
-                return SprintNull.Instance;
-            }
 
             return await Task.FromResult(sprint).ConfigureAwait(false);
 

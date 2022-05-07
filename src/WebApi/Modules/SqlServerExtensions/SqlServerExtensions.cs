@@ -24,8 +24,12 @@ public static class SqlServerExtensions
 
         if (isEnabled)
         {
-            services.AddDbContext<IssueTrackerContext>(options => options.UseSqlServer(
-                configuration.GetValue<string>("SqlServer:ConnectionString")));
+            services.AddDbContext<IssueTrackerContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetValue<string>("SqlServer:ConnectionString")).EnableSensitiveDataLogging(true);
+            }
+
+            );
             services.AddScoped<IIssueRepository, IssueRepository>();
         }
         else

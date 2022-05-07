@@ -21,7 +21,7 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
 
         IssueRepository issueRepository = new IssueRepository(_fixture.Context);
         var id = TrackerId.Build(Guid.NewGuid()).Value;
-        Issue issueToAdd = IssueBuilderFactory.Create(id, SeedData.issueTitle3).Build();
+        Issue issueToAdd = IssueBuilderFactory.Create(id, SeedData.IssueTitle3).Build();
         var ex = await Record.ExceptionAsync(async () => await issueRepository.Add(issueToAdd));
         var issue = await issueRepository.Get(id).ConfigureAwait(false);
 
@@ -34,7 +34,7 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
     {
         IssueRepository issueRepository = new IssueRepository(_fixture.Context);
         var id = TrackerId.Build(Guid.NewGuid()).Value;
-        Issue issueToDelete = IssueBuilderFactory.Create(id, SeedData.issueTitle3).Build();
+        Issue issueToDelete = IssueBuilderFactory.Create(id, SeedData.IssueTitle3).Build();
         await issueRepository.Add(issueToDelete);
         var ex = await Record.ExceptionAsync(async () => await issueRepository.Delete(id));
         bool hasDeletedAccount = _fixture.Context.Issues.Any(issue => issue.IssueId == id);

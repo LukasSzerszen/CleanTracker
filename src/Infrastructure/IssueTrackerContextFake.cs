@@ -19,6 +19,9 @@ public class IssueTrackerContextFake
         var issueId3 = TrackerId.Build(new Guid("cb333ef9-9986-45ef-8872-e3429afb6d3a")).Value;
         var issueId4 = TrackerId.Build(new Guid("9d64104d-e211-44a6-8331-c1134937cd69")).Value;
 
+        var sprintId1 = TrackerId.Build(new Guid("76245a54-2a26-4de9-92ab-1ddbbccb6591")).Value;
+        var sprintId2 = TrackerId.Build(new Guid("60ea7367-b7ec-48e4-af5d-238acddb3ba6")).Value;
+
         var title1 = IssueTitle.Build("issue1").Value;
         var title2 = IssueTitle.Build("issue2").Value;
         var title3 = IssueTitle.Build("issue3").Value;
@@ -29,6 +32,9 @@ public class IssueTrackerContextFake
 
         var points1 = IssuePoints.Build(1).Value;
         var points2 = IssuePoints.Build(2).Value;
+
+        var startdate1 = TrackerDate.Build(DateTime.UtcNow).Value;
+        var enddate1 = TrackerDate.Build(DateTime.UtcNow.AddDays(14)).Value;
 
         var firstname1 = FirstName.Build("John").Value;
 
@@ -51,12 +57,10 @@ public class IssueTrackerContextFake
 
         issue2.Assign(user1.UserId);
 
-        Sprint sprint = new(
-             TrackerId.Build(Guid.NewGuid()).Value
-            );
+        Sprint sprint = new(sprintId1, startdate1, enddate1);
 
-        sprint.Issues.Add(issue1.IssueId, issue1);
-        sprint.Issues.Add(issue2.IssueId, issue2);
+        sprint.Issues.Add(issue1);
+        sprint.Issues.Add(issue2);
 
         Sprints.Add(sprint);
     }

@@ -21,7 +21,7 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
 
         IssueRepository issueRepository = new IssueRepository(_fixture.Context);
         var id = TrackerId.Build(Guid.NewGuid()).Value;
-        Issue issueToAdd = IssueBuilderFactory.Create(id, SeedData.IssueTitle3).Build();
+        Issue issueToAdd = IssueBuilderFactory.Create(id, SeedData.IssueTitle3, null).Build();
         var ex = await Record.ExceptionAsync(async () => await issueRepository.Add(issueToAdd));
         var issue = await issueRepository.Get(id).ConfigureAwait(false);
 
@@ -34,7 +34,7 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
     {
         IssueRepository issueRepository = new IssueRepository(_fixture.Context);
         var id = TrackerId.Build(Guid.NewGuid()).Value;
-        Issue issueToDelete = IssueBuilderFactory.Create(id, SeedData.IssueTitle3).Build();
+        Issue issueToDelete = IssueBuilderFactory.Create(id, SeedData.IssueTitle3, null).Build();
         await issueRepository.Add(issueToDelete);
         var ex = await Record.ExceptionAsync(async () => await issueRepository.Delete(id));
         bool hasDeletedAccount = _fixture.Context.Issues.Any(issue => issue.IssueId == id);
@@ -56,7 +56,7 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
         IssueDescription issueDescription = IssueDescription.Build(description).Value;
         IssueProgressStatus progressStatus = IssueProgressStatus.ReadyForRelease;
         IssuePoints issuePoints = IssuePoints.Build(points).Value;
-        Issue issue = IssueBuilderFactory.Create(issueId, title).Build();
+        Issue issue = IssueBuilderFactory.Create(issueId, title, null).Build();
 
         await issueRepository.Add(issue);
 
@@ -66,7 +66,7 @@ public sealed class IssueRepositoryTests : IClassFixture<StandardFixture>
 
         Assert.Null(ex);
         Assert.Equal(issuePoints, updatedIssue!.Points);
-        Assert.Equal(progressStatus,updatedIssue.Status);
-        Assert.Equal(issueDescription,updatedIssue.Description);
+        Assert.Equal(progressStatus, updatedIssue.Status);
+        Assert.Equal(issueDescription, updatedIssue.Description);
     }
 }

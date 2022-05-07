@@ -19,11 +19,12 @@ public class Issue : IIssue, IAssignable
     public TrackerId? SprintId { get; private set; }
     public Sprint? Sprint { get; private set; }
 
-    private Issue(TrackerId issueId, IssueTitle title)
+    private Issue(TrackerId issueId, IssueTitle title, TrackerId? sprintId)
     {
         IssueId = issueId;
         Title = title;
         Status = IssueProgressStatus.NotStarted;
+        SprintId = sprintId;
     }
 
     public void UpdatePoints(IssuePoints? points) => Points = points;
@@ -45,9 +46,9 @@ public class Issue : IIssue, IAssignable
     public class IssueBuilder : IIssueBuilder
     {
         private Issue Issue;
-        public IssueBuilder(TrackerId trackerId, IssueTitle title)
+        public IssueBuilder(TrackerId trackerId, IssueTitle title, TrackerId? sprintId)
         {
-            this.Issue = new Issue(trackerId, title);
+            this.Issue = new Issue(trackerId, title, sprintId);
         }
 
         public Issue Build()
@@ -91,9 +92,9 @@ public class Issue : IIssue, IAssignable
 
     public static class IssueBuilderFactory
     {
-        public static IssueBuilder Create(TrackerId trackerId, IssueTitle title)
+        public static IssueBuilder Create(TrackerId trackerId, IssueTitle title, TrackerId? sprintId)
         {
-            return new IssueBuilder(trackerId, title);
+            return new IssueBuilder(trackerId, title,sprintId);
         }
     }
 

@@ -37,33 +37,28 @@ public sealed class SeedData
 
         var user1 = UserBuilderFactory.Create(Firstname1, Lastname1).Build();
 
-        Issue issue1 = IssueBuilderFactory.Create(IssueId1, IssueTitle1).WithPoints(Points1).WithDescription(Description1).Build();
+        Issue issue1 = IssueBuilderFactory.Create(IssueId1, IssueTitle1,null).WithPoints(Points1).WithDescription(Description1).Build();
 
-        Issue issue2 = IssueBuilderFactory.Create(IssueId2, IssueTitle2)
-            .WithPoints(Points2)
-            .WithDescription(Description2)
-            .WithAsignee(user1.UserId)
-            .Build();
-
-        Issue issue3 = IssueBuilderFactory.Create(IssueId3, IssueTitle3)
-            .WithPoints(Points3)
-            .WithDescription(Description3)
-            .WithAsignee(user1.UserId)
-            .Build();
+    
 
 
 
         Sprint sprint1 = new(SprintId1, Startdate1, Enddate1);
 
 
-        issue2.UpdateSprint(sprint1);
-        issue3.UpdateSprint(sprint1);
+        Issue issue2 = IssueBuilderFactory.Create(IssueId2, IssueTitle2, sprint1.Id)
+        .WithPoints(Points2)
+        .WithDescription(Description2)
+        .WithAsignee(user1.UserId)
+        .Build();
 
-        //sprint1.Issues.Add(issue1);
-        //sprint1.Issues.Add(issue2);
+        Issue issue3 = IssueBuilderFactory.Create(IssueId3, IssueTitle3, sprint1.Id)
+            .WithPoints(Points3)
+            .WithDescription(Description3)
+            .WithAsignee(user1.UserId)
+            .Build();
 
         builder.Entity<Sprint>().HasData(sprint1);
         builder.Entity<Issue>().HasData(issue1, issue2, issue3);
-
     }
 }

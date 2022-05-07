@@ -42,13 +42,13 @@ public class IssueTrackerContextFake
 
         var user1 = UserBuilderFactory.Create(firstname1, lastname2).Build();
 
-        Issue issue1 = IssueBuilderFactory.Create(issueId1, title1).WithPoints(points1).WithDescription(description1).Build();
+        Issue issue1 = IssueBuilderFactory.Create(issueId1, title1, null).WithPoints(points1).WithDescription(description1).Build();
 
-        Issue issue2 = IssueBuilderFactory.Create(issueId2, title2).WithPoints(points2).WithDescription(description2).WithAsignee(user1.UserId).Build();
+        Issue issue2 = IssueBuilderFactory.Create(issueId2, title2, null).WithPoints(points2).WithDescription(description2).WithAsignee(user1.UserId).Build();
 
-        Issue issue3 = IssueBuilderFactory.Create(issueId3, title3).Build();
+        Issue issue3 = IssueBuilderFactory.Create(issueId3, title3, null).Build();
 
-        Issue issue4 = IssueBuilderFactory.Create(issueId4, title4).Build();
+        Issue issue4 = IssueBuilderFactory.Create(issueId4, title4, null).Build();
 
         Issues.Add(issue1);
         Issues.Add(issue2);

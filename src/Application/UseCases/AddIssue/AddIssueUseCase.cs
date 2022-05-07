@@ -68,7 +68,7 @@ public class AddIssueUseCase : IAddIssueUseCase
             OutputPort?.BadRequest();
         }
 
-        Issue issue = IssueBuilderFactory.Create(issueId, titleResult.Value)
+        Issue issue = IssueBuilderFactory.Create(issueId, titleResult.Value,null)
                 .WithDescription(description)
                 .WithPoints(points)
                 .WithAsignee(assingedTo)

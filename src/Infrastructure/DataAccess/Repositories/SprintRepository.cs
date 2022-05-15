@@ -14,7 +14,7 @@ public class SprintRepository : ISprintRepository
         throw new NotImplementedException();
     }
 
-    public Task Add(Sprint sprint)
+    public Task Add(TrackerId sprintId)
     {
         throw new NotImplementedException();
     }

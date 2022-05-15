@@ -11,7 +11,8 @@ public class SprintRepository : ISprintRepository
     {
         _context = context;
     }
-    public Task Add(Sprint sprint)
+
+    public Task Add(TrackerId sprintId)
     {
         throw new System.NotImplementedException();
     }

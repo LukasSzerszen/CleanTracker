@@ -1,12 +1,11 @@
-﻿using Domain.Interfaces;
-using Domain.ValueObjects;
+﻿using Domain.ValueObjects;
 using System.Threading.Tasks;
 
-namespace Domain;
+namespace Domain.Interfaces;
 
 public interface ISprintRepository
 {
-    Task<ISprint> GetSprint(TrackerId sprintId);
+    Task<ISprint?> GetSprint(TrackerId sprintId);
     Task Add(Sprint sprint);
     Task Update(TrackerId id, Sprint sprint);
     Task Delete(TrackerId sprintId);

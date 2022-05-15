@@ -1,6 +1,6 @@
 ﻿using Domain.ValueObjects;
 
-namespace Domain;
+namespace Domain.Interfaces;
 
 public interface IIssueBuilder
 {

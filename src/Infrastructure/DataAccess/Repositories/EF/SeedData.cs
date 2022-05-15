@@ -3,6 +3,7 @@ using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using System;
 using static Domain.Issue;
+using static Domain.Sprint;
 using static Domain.User;
 
 namespace Infrastructure.DataAccess.Repositories.EF;
@@ -37,14 +38,9 @@ public sealed class SeedData
 
         var user1 = UserBuilderFactory.Create(Firstname1, Lastname1).Build();
 
-        Issue issue1 = IssueBuilderFactory.Create(IssueId1, IssueTitle1,null).WithPoints(Points1).WithDescription(Description1).Build();
+        Issue issue1 = IssueBuilderFactory.Create(IssueId1, IssueTitle1, null).WithPoints(Points1).WithDescription(Description1).Build();
 
-    
-
-
-
-        Sprint sprint1 = new(SprintId1, Startdate1, Enddate1);
-
+        Sprint sprint1 = SprintBuilderFactory.Create(SprintId1, Startdate1, Enddate1).Build()!;
 
         Issue issue2 = IssueBuilderFactory.Create(IssueId2, IssueTitle2, sprint1.Id)
         .WithPoints(Points2)

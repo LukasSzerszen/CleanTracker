@@ -26,7 +26,7 @@ public sealed class UpdateIssueTests : IClassFixture<StandardFixture>
         int points = 8;
         TrackerId issueId = TrackerId.Build(Guid.NewGuid()).Value;
         IssueTitle title = IssueTitle.Build(issueTitle).Value;
-        Issue issue = IssueBuilderFactory.Create(issueId, title).Build();
+        Issue issue = IssueBuilderFactory.Create(issueId, title, null).Build();
         await _fixture.IssueRepositoryFake.Add(issue);
 
         UpdateIssueInput request = new()

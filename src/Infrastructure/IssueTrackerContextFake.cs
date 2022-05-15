@@ -3,6 +3,7 @@ using Domain.ValueObjects;
 using System;
 using System.Collections.ObjectModel;
 using static Domain.Issue;
+using static Domain.Sprint;
 using static Domain.User;
 
 namespace Infrastructure.Repositories;
@@ -57,7 +58,7 @@ public class IssueTrackerContextFake
 
         issue2.Assign(user1.UserId);
 
-        Sprint sprint = new(sprintId1, startdate1, enddate1);
+        Sprint sprint = SprintBuilderFactory.Create(sprintId1, startdate1, enddate1).Build()!;
 
         sprint.Issues.Add(issue1);
         sprint.Issues.Add(issue2);

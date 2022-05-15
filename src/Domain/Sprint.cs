@@ -8,15 +8,39 @@ public class Sprint : ISprint
 {
     public TrackerId Id { get; }
 
-    public TrackerDate StartDate { get; set; }
+    public TrackerDate StartDate { get; private set; }
 
-    public TrackerDate EndDate { get; set; }
+    public TrackerDate EndDate { get; private set; }
 
     public List<Issue> Issues { get; } = new();
-    public Sprint(TrackerId id, TrackerDate startDate, TrackerDate endDate)
+    private Sprint(TrackerId id, TrackerDate startDate, TrackerDate endDate)
     {
         Id = id;
         StartDate = startDate;
         EndDate = endDate;
     }
+
+    public class SprintBuilder : ISprintBuilder
+    {
+        private Sprint? Sprint;
+        public SprintBuilder(TrackerId sprintId, TrackerDate startDate, TrackerDate endDate)
+        {
+            Sprint = new(sprintId, startDate, endDate);
+        }
+        public Sprint? Build()
+        {
+            var result = this.Sprint;
+            Sprint = null;
+            return result;
+        }
+    }
+
+    public static class SprintBuilderFactory
+    {
+        public static SprintBuilder Create(TrackerId sprintId, TrackerDate startDate, TrackerDate endDate)
+        {
+            return new SprintBuilder(sprintId, startDate, endDate);
+        }
+    }
+
 }

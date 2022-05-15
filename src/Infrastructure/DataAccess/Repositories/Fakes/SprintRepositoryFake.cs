@@ -14,11 +14,9 @@ namespace Infrastructure.Repositories
         private readonly IssueTrackerContextFake _context;
         public SprintRepositoryFake(IssueTrackerContextFake context) => _context = context;
 
-        public async Task Add(Sprint sprint)
+        public Task Add(TrackerId sprintId)
         {
-            _context.Sprints.Add(sprint);
-
-            await Task.CompletedTask.ConfigureAwait(false);
+            throw new NotImplementedException();
         }
 
         public async Task Delete(TrackerId sprintId)

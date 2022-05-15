@@ -11,6 +11,7 @@ public interface ISprint
 
     public TrackerDate EndDate { get; }
 
-    public List<Issue> Issues { get; }
+    public IReadOnlyCollection<Issue> Issues { get; }
 
+    void AddIssue(Issue issue);
 }

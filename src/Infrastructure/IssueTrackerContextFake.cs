@@ -60,8 +60,8 @@ public class IssueTrackerContextFake
 
         Sprint sprint = SprintBuilderFactory.Create(sprintId1, startdate1, enddate1).Build()!;
 
-        sprint.Issues.Add(issue1);
-        sprint.Issues.Add(issue2);
+        sprint.AddIssue(issue1);
+        sprint.AddIssue(issue2);
 
         Sprints.Add(sprint);
     }

@@ -33,5 +33,6 @@ public sealed class SprintConfiguration : IEntityTypeConfiguration<Sprint>
 
         builder.HasMany(x => x.Issues).WithOne(b => b.Sprint!).HasForeignKey(b => b.SprintId!).OnDelete(DeleteBehavior.Cascade);
 
+        builder.Metadata.FindNavigation(nameof(Sprint.Issues)).SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

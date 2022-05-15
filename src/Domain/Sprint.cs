@@ -12,7 +12,8 @@ public class Sprint : ISprint
 
     public TrackerDate EndDate { get; private set; }
 
-    public List<Issue> Issues { get; } = new();
+    private readonly List<Issue> _issues = new();
+    public IReadOnlyCollection<Issue> Issues => _issues.AsReadOnly();
     private Sprint(TrackerId id, TrackerDate startDate, TrackerDate endDate)
     {
         Id = id;
@@ -43,4 +44,8 @@ public class Sprint : ISprint
         }
     }
 
+    public void AddIssue(Issue issue)
+    {
+        _issues.Add(issue);
+    }
 }

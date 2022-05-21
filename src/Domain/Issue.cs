@@ -16,8 +16,8 @@ public class Issue : IIssue, IAssignable
     public TrackerId? AssignedTo { get; private set; }
 
     public IssueProgressStatus? Status { get; private set; }
+
     public TrackerId? SprintId { get; private set; }
-    public Sprint? Sprint { get; private set; }
 
     private Issue(TrackerId issueId, IssueTitle title, TrackerId? sprintId)
     {
@@ -37,10 +37,9 @@ public class Issue : IIssue, IAssignable
 
     public void UpdateTitle(IssueTitle title) => Title = title;
 
-    public void UpdateSprint(Sprint? sprint)
+    public void UpdateSprint(TrackerId? sprintId)
     {
-        Sprint = sprint;
-        SprintId = sprint != null ? sprint.Id : null;
+        SprintId = sprintId;
     }
 
     public class IssueBuilder : IIssueBuilder
@@ -82,10 +81,9 @@ public class Issue : IIssue, IAssignable
             return this;
         }
 
-        public IIssueBuilder WithSprint(Sprint? sprint)
+        public IIssueBuilder WithSprint(TrackerId? sprintId)
         {
-            Issue.Sprint = sprint;
-            Issue.SprintId = sprint != null ? sprint.Id : null;
+            Issue.SprintId = sprintId;
             return this;
         }
     }

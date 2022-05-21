@@ -8,7 +8,7 @@ public interface IIssueBuilder
     public IIssueBuilder WithPoints(IssuePoints? points);
     public IIssueBuilder WithAsignee(TrackerId? user);
     public IIssueBuilder WithStatus(IssueProgressStatus? status);
-    public IIssueBuilder WithSprint(Sprint? sprint);
+    public IIssueBuilder WithSprint(TrackerId? sprintId);
     public Issue Build();
 
 }

@@ -9,7 +9,6 @@ public interface IIssue
     public IssueDescription? Description { get; }
     public IssueProgressStatus? Status { get; }
     public TrackerId? SprintId { get; }
-    public Sprint? Sprint { get; }
     public void UpdateDescription(IssueDescription? description);
     public void UpdateProgress(IssueProgressStatus? status);
 }

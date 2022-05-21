@@ -9,12 +9,7 @@ namespace Infrastructure;
 public class SprintRepository : ISprintRepository
 {
 
-    public Task Add(ISprint sprint)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task Add(TrackerId sprintId)
+    public Task Add(Domain.Sprint sprint)
     {
         throw new NotImplementedException();
     }
@@ -24,12 +19,12 @@ public class SprintRepository : ISprintRepository
         throw new NotImplementedException();
     }
 
-    public Task<ISprint?> GetSprint(TrackerId sprintId)
+    public Task<Sprint?> GetSprint(TrackerId sprintId)
     {
         throw new NotImplementedException();
     }
 
-    public Task Update(TrackerId id, Sprint sprint)
+    public Task Update(TrackerId id, Domain.Sprint sprint)
     {
         throw new NotImplementedException();
     }

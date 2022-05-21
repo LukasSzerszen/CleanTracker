@@ -12,9 +12,10 @@ public class SprintRepository : ISprintRepository
         _context = context;
     }
 
-    public Task Add(TrackerId sprintId)
+    public async Task Add(Sprint sprint)
     {
-        throw new System.NotImplementedException();
+        await _context.Sprints.AddAsync(sprint);
+        _context.SaveChanges();
     }
 
     public Task Delete(TrackerId sprintId)
@@ -22,7 +23,7 @@ public class SprintRepository : ISprintRepository
         throw new System.NotImplementedException();
     }
 
-    public async Task<ISprint?> GetSprint(TrackerId sprintId)
+    public async Task<Sprint?> GetSprint(TrackerId sprintId)
     {
         var sprint = await _context.Sprints.FindAsync(sprintId);
         return sprint;

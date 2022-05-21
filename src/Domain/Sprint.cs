@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Domain;
 
-public class Sprint : ISprint
+public class Sprint : Interfaces.ISprint
 {
     public TrackerId Id { get; }
 
@@ -46,6 +46,8 @@ public class Sprint : ISprint
 
     public void AddIssue(Issue issue)
     {
+        issue.UpdateSprint(Id);
         _issues.Add(issue);
     }
+
 }

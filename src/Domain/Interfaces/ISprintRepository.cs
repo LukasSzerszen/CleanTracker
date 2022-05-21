@@ -5,8 +5,8 @@ namespace Domain.Interfaces;
 
 public interface ISprintRepository
 {
-    Task<ISprint?> GetSprint(TrackerId sprintId);
-    Task Add(TrackerId sprintId);
+    Task<Sprint?> GetSprint(TrackerId sprintId);
+    Task Add(Sprint sprintId);
     Task Update(TrackerId id, Sprint sprint);
     Task Delete(TrackerId sprintId);
 }

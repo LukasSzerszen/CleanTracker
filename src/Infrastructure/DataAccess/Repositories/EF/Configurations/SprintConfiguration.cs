@@ -31,8 +31,8 @@ public sealed class SprintConfiguration : IEntityTypeConfiguration<Sprint>
             v => TrackerDate.Build(v).Value)
             .IsRequired();
 
-        builder.HasMany(x => x.Issues).WithOne(b => b.Sprint!).HasForeignKey(b => b.SprintId!).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(x => x.Issues).WithOne().HasForeignKey(b => b.SprintId!).OnDelete(DeleteBehavior.Cascade);
 
-        builder.Metadata.FindNavigation(nameof(Sprint.Issues)).SetPropertyAccessMode(PropertyAccessMode.Field);
+        builder.Metadata.FindNavigation(nameof(Sprint.Issues))!.SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

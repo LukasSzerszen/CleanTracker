@@ -52,5 +52,10 @@ namespace Infrastructure.Repositories
 
             await Task.CompletedTask.ConfigureAwait(false);
         }
+
+        public Task Update(Sprint sprint)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

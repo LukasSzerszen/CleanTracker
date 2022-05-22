@@ -15,7 +15,7 @@ public class SprintRepository : ISprintRepository
     public async Task Add(Sprint sprint)
     {
         await _context.Sprints.AddAsync(sprint);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
     public Task Delete(TrackerId sprintId)
@@ -29,8 +29,26 @@ public class SprintRepository : ISprintRepository
         return sprint;
     }
 
-    public Task Update(TrackerId id, Sprint sprint)
+    public async Task Update(Sprint sprint)
     {
-        throw new System.NotImplementedException();
+        Sprint? updatedSprint = await _context.Sprints.FindAsync(sprint.Id);
+
+        if (updatedSprint == null)
+        {
+            return;
+        }
+
+        foreach (Issue issue in sprint.Issues)
+        {
+            Issue? updatedIssue = await _context.Issues.FindAsync(issue.IssueId);
+            if (updatedIssue == null)
+            {
+                continue;
+            }
+            updatedIssue.UpdateSprint(issue.SprintId);
+            _context.Entry(updatedIssue).Property(i => i.SprintId).IsModified = true;
+        }
+        await _context.SaveChangesAsync();
+
     }
 }

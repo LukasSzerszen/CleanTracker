@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Domain;
 
-public class Sprint : Interfaces.ISprint
+public class Sprint : ISprint
 {
     public TrackerId Id { get; }
 

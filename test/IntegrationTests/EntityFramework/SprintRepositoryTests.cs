@@ -106,4 +106,20 @@ public class SprintRepositoryTests : IClassFixture<StandardFixture>
         Assert.Null(actual);
         Assert.False(deletedSprint);
     }
+
+    [Fact]
+    public async void Delete_Sprint_Has_Cascade_Delete()
+    {
+        SprintRepository repository = new(_fixture.Context);
+        Sprint sprint = SprintBuilderFactory.Create(TrackerId.Build(Guid.NewGuid()).Value, TrackerDate.Build(DateTime.UtcNow).Value, TrackerDate.Build(DateTime.UtcNow.AddDays(10)).Value).Build()!;
+        Issue issue = IssueBuilderFactory.Create(TrackerId.Build(Guid.NewGuid()).Value, IssueTitle.Build("A new sprint issue1").Value, sprint.Id).Build();
+        await _fixture.Context.Sprints.AddRangeAsync(sprint);
+        await _fixture.Context.Issues.AddRangeAsync(issue);
+        await _fixture.Context.SaveChangesAsync();
+
+        await repository.Delete(sprint.Id);
+        bool hasSprint = _fixture.Context.Issues.Any(x => x.SprintId == sprint.Id);
+
+        Assert.False(hasSprint);
+    }
 }

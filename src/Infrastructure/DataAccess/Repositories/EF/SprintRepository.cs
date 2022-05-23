@@ -21,7 +21,7 @@ public class SprintRepository : ISprintRepository
 
     public async Task Delete(TrackerId sprintId)
     {
-     var zoo =   await _context.Database.ExecuteSqlRawAsync("DELETE FROM Sprint WHERE Id=@p0", sprintId.Id);
+        await _context.Database.ExecuteSqlRawAsync("DELETE FROM Sprint WHERE Id=@p0", sprintId.Id);
         await _context.SaveChangesAsync();
     }
 
@@ -50,7 +50,7 @@ public class SprintRepository : ISprintRepository
             updatedIssue.UpdateSprint(issue.SprintId);
             _context.Entry(updatedIssue).Property(i => i.SprintId).IsModified = true;
         }
-        await _context.SaveChangesAsync();
 
+        await _context.SaveChangesAsync();
     }
 }

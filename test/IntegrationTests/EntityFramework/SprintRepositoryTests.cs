@@ -2,6 +2,7 @@
 using Domain.ValueObjects;
 using Infrastructure.DataAccess.Repositories.EF;
 using System;
+using System.Linq;
 using Xunit;
 using static Domain.Issue;
 using static Domain.Sprint;
@@ -61,11 +62,11 @@ public class SprintRepositoryTests : IClassFixture<StandardFixture>
         await _fixture.Context.Sprints.AddRangeAsync(sprint);
         Issue issue1 = IssueBuilderFactory.Create(TrackerId.Build(Guid.NewGuid()).Value, IssueTitle.Build("A new sprint issue1").Value, null).Build();
         Issue issue2 = IssueBuilderFactory.Create(TrackerId.Build(Guid.NewGuid()).Value, IssueTitle.Build("A new sprint issue2").Value, null).Build();
-        await _fixture.Context.Issues.AddRangeAsync(issue1,issue2);
+        await _fixture.Context.Issues.AddRangeAsync(issue1, issue2);
         sprint.AddIssue(issue1);
         sprint.AddIssue(issue2);
 
-        Exception actual = await Record.ExceptionAsync(() =>  repository.Update(sprint));
+        Exception actual = await Record.ExceptionAsync(() => repository.Update(sprint));
 
         Assert.Null(actual);
     }
@@ -79,9 +80,10 @@ public class SprintRepositoryTests : IClassFixture<StandardFixture>
         Issue issue1 = IssueBuilderFactory.Create(TrackerId.Build(Guid.NewGuid()).Value, IssueTitle.Build("A new sprint issue1").Value, null).Build();
         Issue issue2 = IssueBuilderFactory.Create(TrackerId.Build(Guid.NewGuid()).Value, IssueTitle.Build("A new sprint issue2").Value, null).Build();
         await _fixture.Context.Issues.AddRangeAsync(issue1, issue2);
+        await _fixture.Context.SaveChangesAsync();
         sprint.AddIssue(issue1);
         sprint.AddIssue(issue2);
-
+        
         await repository.Update(sprint);
         Sprint? updatedSprint = await _fixture.Context.Sprints.FindAsync(sprint.Id);
 
@@ -89,5 +91,19 @@ public class SprintRepositoryTests : IClassFixture<StandardFixture>
         Assert.Equal(2, updatedSprint!.Issues.Count);
     }
 
+    [Fact]
+    public async void Delete_Sprint_Does_Not_Throw_Exception()
+    {
+        SprintRepository repository = new(_fixture.Context);
+        Sprint sprint = SprintBuilderFactory.Create(TrackerId.Build(Guid.NewGuid()).Value, TrackerDate.Build(DateTime.UtcNow).Value, TrackerDate.Build(DateTime.UtcNow.AddDays(10)).Value).Build()!;
+        await _fixture.Context.Sprints.AddRangeAsync(sprint);
+        await _fixture.Context.SaveChangesAsync();
 
+        Exception actual = await Record.ExceptionAsync(() => repository.Delete(sprint.Id));
+        await repository.Delete(sprint.Id);
+        bool deletedSprint = _fixture.Context.Sprints.Any(x => x.Id == sprint.Id);
+
+        Assert.Null(actual);
+        Assert.False(deletedSprint);
+    }
 }

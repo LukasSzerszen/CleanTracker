@@ -1,6 +1,7 @@
 ﻿using Domain;
 using Domain.Interfaces;
 using Domain.ValueObjects;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace Infrastructure.DataAccess.Repositories.EF;
@@ -18,9 +19,10 @@ public class SprintRepository : ISprintRepository
         await _context.SaveChangesAsync();
     }
 
-    public Task Delete(TrackerId sprintId)
+    public async Task Delete(TrackerId sprintId)
     {
-        throw new System.NotImplementedException();
+     var zoo =   await _context.Database.ExecuteSqlRawAsync("DELETE FROM Sprint WHERE Id=@p0", sprintId.Id);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<Sprint?> GetSprint(TrackerId sprintId)

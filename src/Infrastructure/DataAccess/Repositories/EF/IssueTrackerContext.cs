@@ -9,10 +9,10 @@ public sealed class IssueTrackerContext : DbContext
 
     public IssueTrackerContext(DbContextOptions<IssueTrackerContext> options) : base(options)
     {
-
+        
     }
-
     public DbSet<Issue> Issues { get; set; }
+    public DbSet<Sprint> Sprints { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,6 +22,10 @@ public sealed class IssueTrackerContext : DbContext
         }
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(IssueTrackerContext).Assembly);
+        
         SeedData.Seed(modelBuilder);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder.EnableSensitiveDataLogging(true);
 }

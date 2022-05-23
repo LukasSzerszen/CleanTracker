@@ -30,8 +30,7 @@ public class IssueRepository : IIssueRepository
 
     public async Task<Issue?> Get(TrackerId issueId)
     {
-        return await _context.Issues
-            .FindAsync(issueId);
+        return await _context.Issues.FirstOrDefaultAsync(x => x.IssueId == issueId);
     }
 
     public async Task Update(TrackerId issueId, 

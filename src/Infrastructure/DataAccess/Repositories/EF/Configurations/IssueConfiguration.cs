@@ -22,7 +22,7 @@ public class IssueConfiguration : IEntityTypeConfiguration<Issue>
             v => v.Id,
             v => TrackerId.Build(v).Value)
             .IsRequired();
-     
+
 
         builder.Property(x => x.Title)
             .HasConversion(
@@ -32,7 +32,7 @@ public class IssueConfiguration : IEntityTypeConfiguration<Issue>
 
         builder.Property(x => x.Description)
             .HasConversion(
-            v =>  v.Value.Description ,
+            v => v.Value.Description,
             v => IssueDescription.Build(v).Value)
             .IsRequired(false);
 
@@ -48,8 +48,17 @@ public class IssueConfiguration : IEntityTypeConfiguration<Issue>
             v => TrackerId.Build(v).Value)
             .IsRequired(false);
 
+        builder.Property(x => x.SprintId)
+            .HasConversion(
+            v => v.Value.Id,
+            v => TrackerId.Build(v).Value)
+            .IsRequired(false);
+
         builder.Property(x => x.Status)
             .HasConversion<string>();
-        
+
+        builder.Property(b => b.SprintId)
+            .UsePropertyAccessMode(PropertyAccessMode.FieldDuringConstruction);
+
     }
 }

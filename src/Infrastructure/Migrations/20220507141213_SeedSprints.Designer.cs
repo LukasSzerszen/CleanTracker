@@ -4,6 +4,7 @@ using Infrastructure.DataAccess.Repositories.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(IssueTrackerContext))]
-    partial class IssueTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20220507141213_SeedSprints")]
+    partial class SeedSprints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +66,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             IssueId = new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298"),
-                            AssignedTo = new Guid("e4046d32-b7ba-459f-9aed-847a73d523dc"),
+                            AssignedTo = new Guid("9925232a-7eb8-46bd-a1e9-597e06b36069"),
                             Description = "description2",
                             Points = 2,
                             SprintId = new Guid("76245a54-2a26-4de9-92ab-1ddbbccb6591"),
@@ -74,7 +76,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             IssueId = new Guid("d5bf8c94-f7f3-4aaa-85fc-b02efd4a6d89"),
-                            AssignedTo = new Guid("e4046d32-b7ba-459f-9aed-847a73d523dc"),
+                            AssignedTo = new Guid("9925232a-7eb8-46bd-a1e9-597e06b36069"),
                             Description = "description3",
                             Points = 4,
                             SprintId = new Guid("76245a54-2a26-4de9-92ab-1ddbbccb6591"),
@@ -102,17 +104,19 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("76245a54-2a26-4de9-92ab-1ddbbccb6591"),
-                            EndDate = new DateTime(2022, 6, 4, 9, 38, 1, 379, DateTimeKind.Utc).AddTicks(3660),
-                            StartDate = new DateTime(2022, 5, 21, 9, 38, 1, 379, DateTimeKind.Utc).AddTicks(2165)
+                            EndDate = new DateTime(2022, 5, 21, 14, 12, 12, 650, DateTimeKind.Utc).AddTicks(9001),
+                            StartDate = new DateTime(2022, 5, 7, 14, 12, 12, 650, DateTimeKind.Utc).AddTicks(7562)
                         });
                 });
 
             modelBuilder.Entity("Domain.Issue", b =>
                 {
-                    b.HasOne("Domain.Sprint", null)
+                    b.HasOne("Domain.Sprint", "Sprint")
                         .WithMany("Issues")
                         .HasForeignKey("SprintId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Sprint");
                 });
 
             modelBuilder.Entity("Domain.Sprint", b =>

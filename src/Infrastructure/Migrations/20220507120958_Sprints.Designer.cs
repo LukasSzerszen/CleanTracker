@@ -4,6 +4,7 @@ using Infrastructure.DataAccess.Repositories.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(IssueTrackerContext))]
-    partial class IssueTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20220507120958_Sprints")]
+    partial class Sprints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,22 +66,11 @@ namespace Infrastructure.Migrations
                         new
                         {
                             IssueId = new Guid("035fecc7-5bcc-4c9e-b7d8-34113e722298"),
-                            AssignedTo = new Guid("e4046d32-b7ba-459f-9aed-847a73d523dc"),
+                            AssignedTo = new Guid("cb1c520b-6085-4d31-8203-85b0afe538e2"),
                             Description = "description2",
                             Points = 2,
-                            SprintId = new Guid("76245a54-2a26-4de9-92ab-1ddbbccb6591"),
                             Status = "NotStarted",
                             Title = "issue2"
-                        },
-                        new
-                        {
-                            IssueId = new Guid("d5bf8c94-f7f3-4aaa-85fc-b02efd4a6d89"),
-                            AssignedTo = new Guid("e4046d32-b7ba-459f-9aed-847a73d523dc"),
-                            Description = "description3",
-                            Points = 4,
-                            SprintId = new Guid("76245a54-2a26-4de9-92ab-1ddbbccb6591"),
-                            Status = "NotStarted",
-                            Title = "issue3"
                         });
                 });
 
@@ -97,22 +88,16 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sprint", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("76245a54-2a26-4de9-92ab-1ddbbccb6591"),
-                            EndDate = new DateTime(2022, 6, 4, 9, 38, 1, 379, DateTimeKind.Utc).AddTicks(3660),
-                            StartDate = new DateTime(2022, 5, 21, 9, 38, 1, 379, DateTimeKind.Utc).AddTicks(2165)
-                        });
                 });
 
             modelBuilder.Entity("Domain.Issue", b =>
                 {
-                    b.HasOne("Domain.Sprint", null)
+                    b.HasOne("Domain.Sprint", "Sprint")
                         .WithMany("Issues")
                         .HasForeignKey("SprintId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("Sprint");
                 });
 
             modelBuilder.Entity("Domain.Sprint", b =>

@@ -1,6 +1,5 @@
 ﻿using Application.UseCases.AddSprint;
 using Domain;
-using Domain.Interfaces;
 using System;
 using Xunit;
 
@@ -14,10 +13,15 @@ public class AddSprintTests : IClassFixture<StandardFixture>
     [Fact]
     public async void AddSprintUseCase_Does_Not_Throw_Exception()
     {
+        AddSprintPresenter presenter = new();
         Notification notification = new();
-        ISprintRepository repository = _fixture.SprintRepositoryFake;
-        AddSprintUseCase sut = new(notification, repository);
-        AddSprintInput input = new();
+        AddSprintUseCase sut = new(notification, _fixture.SprintRepositoryFake);
+        sut.OutputPort = presenter;
+        AddSprintInput input = new()
+        {
+            StartDate = DateTime.UtcNow,
+            EndDate = DateTime.UtcNow.AddDays(10),
+        };
 
         Exception actual = await Record.ExceptionAsync(() => sut.Execute(input));
 

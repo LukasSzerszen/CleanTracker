@@ -37,7 +37,7 @@ public class IssueRepositoryFake : IIssueRepository
         Issue issue = _context.Issues
             .Where(issue => issue.IssueId.Equals(issueId))
             .Select(issue => issue)
-            .SingleOrDefault();
+            .SingleOrDefault()!;
 
         return await Task.FromResult(issue).ConfigureAwait(false);
     }

@@ -52,9 +52,7 @@ public class Issue : IIssue, IAssignable
 
         public Issue Build()
         {
-            var result = this.Issue;
-            Issue = null;
-            return result;
+            return Issue;
         }
 
         public IIssueBuilder WithAsignee(TrackerId? user)

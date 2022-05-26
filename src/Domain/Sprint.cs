@@ -23,7 +23,7 @@ public class Sprint : ISprint
 
     public class SprintBuilder : ISprintBuilder
     {
-        private Sprint? Sprint;
+        private Sprint Sprint;
         public SprintBuilder(TrackerId sprintId, TrackerDate startDate, TrackerDate endDate)
         {
             Sprint = new(sprintId, startDate, endDate);

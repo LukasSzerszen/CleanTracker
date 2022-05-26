@@ -4,7 +4,7 @@ namespace Application.UseCases.AddIssue;
 
 public sealed class AddIssueInput
 {
-    public string Title { get; set; }
+    public string Title { get; set; } 
 
     public string? Description { get; set; }
 

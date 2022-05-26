@@ -12,14 +12,15 @@ namespace Infrastructure.Repositories
         private readonly IssueTrackerContextFake _context;
         public SprintRepositoryFake(IssueTrackerContextFake context) => _context = context;
 
-        public Task Add(Sprint sprintId)
+        public Task Add(Sprint sprint)
         {
-            throw new NotImplementedException();
+            _context.Sprints.Add(sprint);
+            return Task.CompletedTask;
         }
 
         public async Task Delete(TrackerId sprintId)
         {
-            Domain.Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
+            Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
 
             if (sprint == null)
             {
@@ -33,7 +34,7 @@ namespace Infrastructure.Repositories
 
         public async Task<Sprint?> GetSprint(TrackerId sprintId)
         {
-            Domain.Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
+            Sprint? sprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
 
 
             return await Task.FromResult(sprint).ConfigureAwait(false);
@@ -42,7 +43,7 @@ namespace Infrastructure.Repositories
 
         public async Task Update(TrackerId sprintId, Sprint sprint)
         {
-            Domain.Sprint? oldSprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
+            Sprint? oldSprint = _context.Sprints.SingleOrDefault(sprint => sprint.Id.Equals(sprintId));
 
             if (oldSprint != null)
             {

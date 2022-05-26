@@ -31,11 +31,13 @@ public static class SqlServerExtensions
 
             );
             services.AddScoped<IIssueRepository, IssueRepository>();
+            services.AddScoped<ISprintRepository, SprintRepository>();
         }
         else
         {
             services.AddSingleton<IssueTrackerContextFake, IssueTrackerContextFake>();
             services.AddScoped<IIssueRepository, IssueRepositoryFake>();
+            services.AddScoped<ISprintRepository, SprintRepositoryFake>();
         }
 
         return services;

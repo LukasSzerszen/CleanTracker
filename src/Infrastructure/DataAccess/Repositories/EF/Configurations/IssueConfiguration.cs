@@ -32,25 +32,25 @@ public class IssueConfiguration : IEntityTypeConfiguration<Issue>
 
         builder.Property(x => x.Description)
             .HasConversion(
-            v => v.Value.Description,
+            v => v!.Value.Description,
             v => IssueDescription.Build(v).Value)
             .IsRequired(false);
 
         builder.Property(x => x.Points)
             .HasConversion(
-            v => v.Value.Points,
+            v => v!.Value.Points,
             v => IssuePoints.Build(v).Value)
             .IsRequired(false);
 
         builder.Property(x => x.AssignedTo)
             .HasConversion(
-            v => v.Value.Id,
+            v => v!.Value.Id,
             v => TrackerId.Build(v).Value)
             .IsRequired(false);
 
         builder.Property(x => x.SprintId)
             .HasConversion(
-            v => v.Value.Id,
+            v => v!.Value.Id,
             v => TrackerId.Build(v).Value)
             .IsRequired(false);
 

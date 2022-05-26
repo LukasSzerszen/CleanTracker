@@ -36,6 +36,7 @@ public static class SqlServerExtensions
         {
             services.AddSingleton<IssueTrackerContextFake, IssueTrackerContextFake>();
             services.AddScoped<IIssueRepository, IssueRepositoryFake>();
+            services.AddScoped<ISprintRepository, SprintRepositoryFake>();
         }
 
         return services;

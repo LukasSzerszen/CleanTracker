@@ -6,5 +6,6 @@ public enum Features
     DeleteIssueUseCase,
     GetIssueUseCase,
     UpdateIssueUseCase,
+    AddSprintUseCase,
     SqlServer
 }

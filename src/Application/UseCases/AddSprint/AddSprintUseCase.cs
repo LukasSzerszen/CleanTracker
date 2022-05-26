@@ -35,6 +35,6 @@ public class AddSprintUseCase : IAddSprintUseCase
 
         await Repository.Add(sprint);
 
-        OutputPort.Ok(sprint);
+        OutputPort.Ok();
     }
 }

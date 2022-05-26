@@ -31,6 +31,7 @@ public static class SqlServerExtensions
 
             );
             services.AddScoped<IIssueRepository, IssueRepository>();
+            services.AddScoped<ISprintRepository, SprintRepository>();
         }
         else
         {
